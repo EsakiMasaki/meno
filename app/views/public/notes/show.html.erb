@@ -1,2 +1,65 @@
-<h1>Public::Notes#show</h1>
-<p>Find me in app/views/public/notes/show.html.erb</p>
+<div class="container">
+  <div class="row">
+    <p>
+      <span>作成日: <%= @note.created_at.strftime("%Y/%m/%d") %></span>
+      <span class="ml-3">最終更新日: <%= @note.updated_at.strftime("%Y/%m/%d") %></span>
+    </p>
+    <span class="favorite-<%= @note.id %> ml-5">
+      <%= render "favorites/like", note: @note %>
+    </span>
+    <% if current_customer == @note.customer %>
+      <div class="mx-5">
+        <p>公開ステータス:
+          <% if @note.publish_status == "publish" %>
+            <%= Note.publish_statuses_i18n[:publish] %>
+          <% else %>
+            <%= Note.publish_statuses_i18n[:nonpublic] %>
+          <% end %>
+        </p>
+        <%= link_to "編集" , edit_note_path(@note), class: "btn btn-sm btn-success" %>
+        <%= link_to "削除" , note_path(@note), method: :delete , "data-confirm" => "本当に削除しますか？" , class: "btn btn-sm btn-danger" %>
+      </div>
+    <% end %>
+  </div>
+  <% if @note.category_id != nil %>
+    <p><%= @note.category.name %></p>
+  <% end %>
+  <h1><%= @note.title %></h1>
+  <h3>できるようになること</h3>
+  <p><%= safe_join(@note.can.split("\n"),tag(:br)) %></p>
+  <% if @note.necessities != "" %>
+    <h3>必要なもの</h3>
+    <p><%= safe_join(@note.necessities.split("\n"),tag(:br)) %></p>
+  <% end %>
+  <h3>手順</h3>
+  <ol>
+    <% @note.note_procedures.each do |procedure| %>
+      <li><%= procedure.procedure %></li>
+    <% end %>
+  </ol>
+  <h3>手順説明</h3>
+  <% num = 0 %>
+  <% @note.note_procedures.each do |procedure| %>
+    <% num += 1 %>
+    <h4><%= "#{num}. #{procedure.procedure}" %></h4>
+    <% if procedure.procedure_image.attached? %>
+      <p class="text-center"><%= image_tag procedure.get_text_image(700,500) %></p>
+    <% end %>
+    <p class="mb-3"><%= safe_join(procedure.explanation.split("\n"),tag(:br)) %></p>
+  <% end %>
+
+  <h3>まとめ</h3>
+  <p><%= safe_join(@note.conclude.split("\n"),tag(:br)) %></p>
+
+
+  <div class="row">
+    <div class="text-center">
+      <%= render "note_comments/form", note: @note, comment: @comment %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="comments-index text-center">
+      <%= render "note_comments/index", note: @note %>
+    </div>
+  </div>
+</div>
