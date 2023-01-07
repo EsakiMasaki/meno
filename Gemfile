@@ -59,4 +59,8 @@ gem "pry-rails"
 
 gem "devise"
 
+gem "cocoon"
+
 gem "jquery-rails"
+
+gem "enum_help"

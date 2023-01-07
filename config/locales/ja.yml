@@ -1,0 +1,11 @@
+ja:
+  enums:
+    note:
+      publish_status:
+        publish: "公開"
+        nonpublic: "非公開"
+
+    note_comment:
+      post_status:
+        comment: "コメント"
+        memo: "メモ"
