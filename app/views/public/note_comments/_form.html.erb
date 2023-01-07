@@ -1,0 +1,8 @@
+<%= form_with model: [@note,@comment],url:note_note_comments_path(@note,@comment),method: :post, local: false do |f| %>
+  <%= f.radio_button :post_status, :comment, checked: true %>
+  <%= f.label :post_status_comment, NoteComment.post_statuses_i18n[:comment] %>
+  <%= f.radio_button :post_status, :memo %>
+  <%= f.label :post_status_memo, NoteComment.post_statuses_i18n[:memo] %><br>
+  <%= f.text_area :comment , rows: 5, class: "form-control comment-textarea" %>
+  <%= f.submit "投稿", class: "btn btn-sm btn-secondary" %>
+<% end %>

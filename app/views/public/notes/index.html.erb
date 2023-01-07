@@ -15,7 +15,7 @@
             <%= note.category.name %>
           <% end %>
         </td>
-        <td class="favorite-<%= note.id %>"><%= render "favorites/like", note: note %></td>
+        <td class="favorite-<%= note.id %>"><%= render "public/favorites/like", note: note %></td>
         <td><%= link_to "見る", note_path(note),class: "btn btn-primary" %></td>
       </tr>
     <% end %>

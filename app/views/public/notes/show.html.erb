@@ -5,7 +5,7 @@
       <span class="ml-3">最終更新日: <%= @note.updated_at.strftime("%Y/%m/%d") %></span>
     </p>
     <span class="favorite-<%= @note.id %> ml-5">
-      <%= render "favorites/like", note: @note %>
+      <%= render "public/favorites/like", note: @note %>
     </span>
     <% if current_customer == @note.customer %>
       <div class="mx-5">
@@ -54,12 +54,12 @@
 
   <div class="row">
     <div class="text-center">
-      <%= render "note_comments/form", note: @note, comment: @comment %>
+      <%= render "public/note_comments/form", note: @note, comment: @comment %>
     </div>
   </div>
   <div class="row">
     <div class="comments-index text-center">
-      <%= render "note_comments/index", note: @note %>
+      <%= render "public/note_comments/index", note: @note %>
     </div>
   </div>
 </div>

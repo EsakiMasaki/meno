@@ -1,0 +1,26 @@
+<table>
+  <% note.note_comments.each do |comment| %>
+    <% if (comment.post_status == "comment") || (current_customer == comment.customer) %>
+      <tr>
+        <td>
+          <%= link_to customer_path(comment.customer) do %>
+            <%= image_tag comment.customer.get_profile_image(25,25), class: "rounded-circle" %>
+            投稿者:<%= comment.customer.name %>
+          <% end %>
+          <br>
+          <%= safe_join(comment.comment.split("\n"), tag(:br)) %>
+        </td>
+        <% if current_customer == comment.customer %>
+          <td>
+            <% if comment.post_status == "comment" %>
+              <%= NoteComment.post_statuses_i18n[:comment] %>
+            <% else %>
+              <%= NoteComment.post_statuses_i18n[:memo] %>
+            <% end %>
+            <%= link_to "削除", note_note_comment_path(comment.note,comment),method: :delete , remote: true %>
+          </td>
+        <% end %>
+      </tr>
+    <% end %>
+  <% end %>
+</table>

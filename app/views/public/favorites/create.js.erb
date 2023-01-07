@@ -1,2 +1,1 @@
-<h1>Public::Favorites#create</h1>
-<p>Find me in app/views/public/favorites/create.html.erb</p>
+$(".favorite-<%= @favorite.note.id %>").html("<%= j(render "public/favorites/like", note: @favorite.note) %>");

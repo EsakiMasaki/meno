@@ -1,0 +1,13 @@
+<% if note.favorited_by?(current_customer) %>
+  <p>
+    <%= link_to note_favorites_path(note),method: :delete,class: "text-dark" , remote: true do %>
+      ❤️<%= note.favorites.count %>
+    <% end %>
+  </p>
+<% else %>
+  <p>
+    <%= link_to note_favorites_path(note),method: :post,class: "text-dark" , remote: true do %>
+      🤍<%= note.favorites.count %>
+    <% end %>
+  </p>
+<% end %>
