@@ -16,9 +16,9 @@
       <ul>
         <% if customer_signed_in? %>
           <li><%= link_to "ランキング", root_path %></li>
-          <li><%#= link_to "マイページ", user_path(current_user) %></li>
-          <li><%#= link_to "マイノート", notes_path %></li>
-          <li><%#= link_to "ノート作成", new_note_path %></li>
+          <li><%= link_to "マイページ", customer_path(current_customer) %></li>
+          <li><%= link_to "マイノート", notes_path %></li>
+          <li><%= link_to "ノート作成", new_note_path %></li>
           <li><%= link_to "ログアウト",destroy_customer_session_path ,method: :delete %></li>
         <% else %>
           <li><%= link_to "ランキング", root_path %></li>
