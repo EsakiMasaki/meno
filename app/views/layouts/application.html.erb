@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Meno1</title>
+    <title>Meno</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -11,6 +11,31 @@
   </head>
 
   <body>
-    <%= yield %>
+
+    <header class="bg-dark">
+      <ul>
+        <% if customer_signed_in? %>
+          <li><%= link_to "ランキング", root_path %></li>
+          <li><%#= link_to "マイページ", user_path(current_user) %></li>
+          <li><%#= link_to "マイノート", notes_path %></li>
+          <li><%#= link_to "ノート作成", new_note_path %></li>
+          <li><%= link_to "ログアウト",destroy_customer_session_path ,method: :delete %></li>
+        <% else %>
+          <li><%= link_to "ランキング", root_path %></li>
+          <li><%= link_to "アプリ説明", about_path %></li>
+          <li><%= link_to "ログイン",new_customer_session_path %></li>
+          <li><%= link_to "新規登録",new_customer_registration_path %></li>
+        <% end %>
+      </ul>
+    </header>
+
+    <main class="min-vh-100">
+      <%= yield %>
+    </main>
+
+    <footer class="bg-dark mt-5">
+      <p class="text-center text-white">&copy;</p>
+    </footer>
+
   </body>
 </html>
