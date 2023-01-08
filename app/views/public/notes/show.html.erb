@@ -43,7 +43,7 @@
     <% num += 1 %>
     <h4><%= "#{num}. #{procedure.procedure}" %></h4>
     <% if procedure.procedure_image.attached? %>
-      <p class="text-center"><%= image_tag procedure.get_text_image(700,500) %></p>
+      <p class="text-center"><%= image_tag procedure.get_procedure_image(700,500) %></p>
     <% end %>
     <p class="mb-3"><%= safe_join(procedure.explanation.split("\n"),tag(:br)) %></p>
   <% end %>

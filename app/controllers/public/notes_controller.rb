@@ -32,6 +32,25 @@ class Public::NotesController < ApplicationController
   end
 
   def edit
+    @note = Note.find(params[:id])
+  end
+
+  def update
+    @note = current_customer.notes.find(params[:id])
+    if @note.update(note_params)
+      redirect_to note_path(@note)
+    else
+      render :edit
+    end
+  end
+
+  def destroy
+    @note = Note.find(params[:id])
+    if @note.destroy
+      redirect_to notes_path
+    else
+      render :show
+    end
   end
 
   private
