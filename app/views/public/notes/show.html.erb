@@ -1,55 +1,57 @@
 <div class="container bg-white rounded-lg">
   <div class="row mt-5">
-    <div class="col-12 my-3">
+    <div class="col-8 my-3">
       <span>作成日: <%= @note.created_at.strftime("%Y/%m/%d") %></span>
       <span class="ml-3">最終更新日: <%= @note.updated_at.strftime("%Y/%m/%d") %></span>
-      <span class="favorite-<%= @note.id %> mx-5">
+      <span class="favorite-<%= @note.id %> ml-5">
         <%= render "public/favorites/like", note: @note %>
       </span>
+    </div>
+    <div class="col-4 my-3">
       <% if current_customer == @note.customer %>
-        <span class="ml-5">
+        <div class="text-right">
           公開ステータス:
           <% if @note.publish_status == "publish" %>
             <%= Note.publish_statuses_i18n[:publish] %>
           <% else %>
             <%= Note.publish_statuses_i18n[:nonpublic] %>
           <% end %>
-        </span>
+        </div>
       <% end %>
     </div>
   </div>
 
   <div class="row mt-5">
     <div class="col-12">
-      <h1 class="font-weight-bold"><%= @note.title %></h1>
+      <h1 class="font-weight-bold h-title"><%= @note.title %></h1>
       <% if @note.category_id != nil %>
-        <p><%= @note.category.name %></p>
+        <p class="text"><i class="fa-solid fa-tag"></i> <%= link_to @note.category.name ,"#",class: "text-dark" %></p>
       <% end %>
-      <h3 class="mt-5">できるようになること</h3>
-      <p><%= safe_join(@note.can.split("\n"),tag(:br)) %></p>
+      <h3 class="h-frame">できるようになること</h3>
+      <p class="text"><%= safe_join(@note.can.split("\n"),tag(:br)) %></p>
       <% if @note.necessities != "" %>
-        <h3 class="mt-5">必要なもの</h3>
-        <p><%= safe_join(@note.necessities.split("\n"),tag(:br)) %></p>
+        <h3 class="h-frame">必要なもの</h3>
+        <p class="text"><%= safe_join(@note.necessities.split("\n"),tag(:br)) %></p>
       <% end %>
-      <h3 class="mt-5">手順</h3>
-      <ol>
-        <% @note.note_procedures.each do |procedure| %>
-          <li><%= procedure.procedure %></li>
-        <% end %>
-      </ol>
-      <h3 class="mt-5">手順説明</h3>
+      <h3 class="h-frame">手順</h3>
       <% num = 0 %>
       <% @note.note_procedures.each do |procedure| %>
         <% num += 1 %>
-        <h4><%= "#{num}. #{procedure.procedure}" %></h4>
+        <p class="text"><%= link_to "#{num}. #{procedure.procedure}", "#procedure-#{num}", class: "text-dark" %></p>
+      <% end %>
+      <h3 class="h-frame">手順説明</h3>
+      <% num = 0 %>
+      <% @note.note_procedures.each do |procedure| %>
+        <% num += 1 %>
+        <h4 class="h-double" id="procedure-<%= num %>"><%= "#{num}. #{procedure.procedure}" %></h4>
         <% if procedure.procedure_image.attached? %>
-          <p class="text-center"><%= image_tag procedure.get_procedure_image(700,500) %></p>
+          <p class="text-center text"><%= image_tag procedure.get_procedure_image(700,500) %></p>
         <% end %>
-        <p class="mb-3"><%= safe_join(procedure.explanation.split("\n"),tag(:br)) %></p>
+        <p class="mb-3 text"><%= safe_join(procedure.explanation.split("\n"),tag(:br)) %></p>
       <% end %>
 
-      <h3 class="mt-5">まとめ</h3>
-      <p><%= safe_join(@note.conclude.split("\n"),tag(:br)) %></p>
+      <h3 class="h-frame">まとめ</h3>
+      <p class="text"><%= safe_join(@note.conclude.split("\n"),tag(:br)) %></p>
     </div>
   </div>
 
