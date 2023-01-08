@@ -1,9 +1,9 @@
-<div class="container">
+<div class="container mt-5">
   <h1>ノート作成</h1>
 
   <%= form_with model: @note , url: notes_path , method: :post do |f| %>
     <div class="row mt-3">
-      <div class="col-10">
+      <div class="col-12">
         <div class="bg-dark text-center pt-2">
           <%= f.label "タイトル",class: "text-white" %>
         </div>
@@ -11,7 +11,7 @@
       </div>
     </div>
     <div class="row mt-3">
-      <div class="col-10">
+      <div class="col-12">
         <div class="bg-dark text-center pt-2">
           <%= f.label "できること",class: "text-white" %>
         </div>
@@ -19,7 +19,7 @@
       </div>
     </div>
     <div class="row mt-3">
-      <div class="col-10">
+      <div class="col-12">
         <div class="bg-dark text-center pt-2">
           <%= f.label "必要なもの",class: "text-white" %>
         </div>
@@ -27,14 +27,14 @@
       </div>
     </div>
     <div class="row mt-3">
-      <div class="col-10">
+      <div class="col-12">
         <div class="text-right bg-dark p-2">
           <%= link_to_add_association "手順追加",f , :note_procedures ,data: {association_insertion_node: '#detail-association-insertion-point',association_insertion_method: 'append'}, class: "btn btn-primary rounded-circle" %>
         </div>
       </div>
     </div>
     <div class="row">
-      <div class="col-10">
+      <div class="col-12">
         <div class="texts">
           <%= f.fields_for :note_procedures do |t| %>
             <%= render "note_procedure_fields", f: t %>
@@ -44,7 +44,7 @@
       </div>
     </div>
     <div class="row mt-3">
-      <div class="col-10">
+      <div class="col-12">
         <div class="bg-dark text-center pt-2">
           <%= f.label "まとめ",class: "text-white" %>
         </div>
@@ -52,7 +52,7 @@
       </div>
     </div>
     <div class="row mt-5">
-      <div class="col-10">
+      <div class="col-12">
         <div class="text-center">
           <%= f.label "カテゴリー" %><br>
           <%= f.collection_select(:category_id, current_customer.categories.all, :id ,:name, prompt: "カテゴリーを選択して下さい", class: "form-control") %>
@@ -60,7 +60,7 @@
       </div>
     </div>
     <div class="row mt-5">
-      <div class="col-10">
+      <div class="col-12">
         <div class="text-center">
           <%= f.label "公開ステータス" %><br>
           <%= f.radio_button :publish_status, :publish, checked: true %>
@@ -71,7 +71,7 @@
       </div>
     </div>
     <div class="row my-5">
-      <div class="col-10">
+      <div class="col-12">
         <div class="text-center mt-3">
           <%= f.submit "保存", class: "btn btn-info" %>
         </div>

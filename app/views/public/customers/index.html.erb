@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container mt-5">
   <div class="row mb-5">
     <div class="col-7">
       <h1>ユーザー一覧</h1>
@@ -20,7 +20,7 @@
       <tr>
         <td>
           <%= link_to customer_path(customer) , class: "text-dark" do %>
-            <%= image_tag customer.get_profile_image(50,50), class: "rounded-circle" %>
+            <%= image_tag customer.get_profile_image(25,25), class: "rounded-circle mb-1" %>
             <%= customer.name %>
           <% end %>
         </td>

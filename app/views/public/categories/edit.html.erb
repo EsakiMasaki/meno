@@ -1,6 +1,7 @@
-<div class="container">
-  <h1>カテゴリー編集</h1>
-
+<div class="container mt-5">
+  <div class="row">
+    <h1>カテゴリー編集</h1>
+  </div>
   <%= form_with model: @category, url: category_path(@category), method: :patch do |f| %>
     <div class="row mt-5">
       <%= f.label "カテゴリー名" %><br>
