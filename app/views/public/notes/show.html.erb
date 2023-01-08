@@ -25,7 +25,7 @@
     <div class="col-12">
       <h1 class="font-weight-bold h-title"><%= @note.title %></h1>
       <% if @note.category_id != nil %>
-        <p class="text"><i class="fa-solid fa-tag"></i> <%= link_to @note.category.name ,"#",class: "text-dark" %></p>
+        <p class="text"><i class="fa-solid fa-tag"></i> <%= link_to @note.category.name , category_path(@note.category),class: "text-dark" %></p>
       <% end %>
       <h3 class="h-frame">できるようになること</h3>
       <p class="text"><%= safe_join(@note.can.split("\n"),tag(:br)) %></p>
@@ -76,9 +76,11 @@
           <% end %>
         </h2>
         <div class="ml-5">
-          <p class="my-5 ml-5">
-            <%= safe_join(@note.customer.introduction.split("\n"), tag(:br)) %>
-          </p>
+          <% if @note.customer.introduction != nil %>
+            <p class="my-5 ml-5">
+              <%= safe_join(@note.customer.introduction.split("\n"), tag(:br)) %>
+            </p>
+          <% end %>
           <div class="ml-5">
             <% if current_customer.followings?(@note.customer) %>
               <%= link_to "フォローを外す" , customer_relationships_path(@note.customer) , method: :delete, class: "btn btn-danger" %>
