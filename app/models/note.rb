@@ -4,7 +4,7 @@ class Note < ApplicationRecord
   has_many :note_procedures, dependent: :destroy
   has_many :note_comments ,dependent: :destroy
   has_many :favorites , dependent: :destroy
-  has_many :favorited_users , through: :favorites , source: :user
+  has_many :favorited_customers , through: :favorites , source: :customer
 
   def self.looks(word)
     Note.where("title LIKE?", "%#{word}%")

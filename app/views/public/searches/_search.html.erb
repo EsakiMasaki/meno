@@ -1,0 +1,8 @@
+<%= form_with url: search_path, method: :get do |f| %>
+  <%= f.text_field :word %>
+  <% if request.url.include?("customer") %>
+    <%= f.submit "検索", name: "customer_search" %>
+  <% else %>
+    <%= f.submit "検索", name: "note_search" %>
+  <% end %>
+<% end %>

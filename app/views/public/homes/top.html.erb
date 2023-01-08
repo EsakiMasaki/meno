@@ -1,2 +1,46 @@
-<h1>Public::Homes#top</h1>
-<p>Find me in app/views/public/homes/top.html.erb</p>
+<div class="container">
+  <div class="row mb-5">
+    <div class="col-7">
+      <h1>ランキング</h1>
+    </div>
+
+    <div class="col-3">
+      <%= render "public/searches/search" %>
+    </div>
+  </div>
+
+
+  <table class="table">
+    <tr>
+      <th>作成者</th>
+      <th>タイトル</th>
+      <th>カテゴリー</th>
+      <th>いいね数</th>
+      <th></th>
+    </tr>
+    <% @notes.each do |note| %>
+      <% if note.publish_status == "publish" %>
+        <tr>
+          <td>
+            <%= link_to customer_path(note.customer) ,class: "text-dark" do %>
+              <%= image_tag note.customer.get_profile_image(25,25) , class: "rounded-circle" %>
+              <%= note.customer.name %>
+            <% end %>
+          </td>
+          <td><%= link_to note.title , note_path(note) , class: "text-dark" %></td>
+          <td>
+            <% if note.category_id != nil %>
+              <%= note.category.name %>
+            <% end %>
+          </td>
+          <% if customer_signed_in? %>
+            <td class="favorite-<%= note.id %>"><%= render "public/favorites/like", note: note %></td>
+          <% else %>
+            <td><%= note.favorites.count %></td>
+          <% end %>
+          <td><%= link_to "見る", note_path(note),class: "btn btn-primary" %></td>
+        </tr>
+      <% end %>
+    <% end %>
+  </table>
+</div>

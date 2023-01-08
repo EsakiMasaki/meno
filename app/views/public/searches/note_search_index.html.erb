@@ -1,0 +1,101 @@
+<div class="container">
+  <div class="row mb-5">
+    <div class="col-7">
+      <h1>検索ワード: <%= @word %></h1>
+    </div>
+
+    <div class="col-3">
+      <%= render "public/searches/search" %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-10">
+      <h2>タイトル検索結果</h2>
+      <% if @notes.count != 0 %>
+      <table class="table">
+        <tr>
+          <th>作成者</th>
+          <th>タイトル</th>
+          <th>カテゴリー</th>
+          <th>いいね数</th>
+          <th></th>
+        </tr>
+        <% @notes.each do |note| %>
+          <% if note.publish_status == "publish" %>
+            <tr>
+              <td>
+                <%= link_to customer_path(note.customer) ,class: "text-dark" do %>
+                  <%= image_tag note.customer.get_profile_image(25,25) , class: "rounded-circle" %>
+                  <%= note.customer.name %>
+                <% end %>
+              </td>
+              <td><%= link_to note.title , note_path(note) , class: "text-dark" %></td>
+              <td>
+                <% if note.category_id != nil %>
+                  <%= note.category.name %>
+                <% end %>
+              </td>
+              <% if customer_signed_in? %>
+                <td class="favorite-<%= note.id %>"><%= render "public/favorites/like", note: note %></td>
+              <% else %>
+                <td><%= note.favorites.count %></td>
+              <% end %>
+              <td><%= link_to "見る", note_path(note),class: "btn btn-primary" %></td>
+            </tr>
+          <% end %>
+        <% end %>
+      </table>
+      <% else %>
+        <p>見つかりませんでした</p>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="row mt-5">
+    <div class="col-10">
+      <h2>カテゴリー検索結果</h2>
+      <% if request.url.include?("note") %>
+        <% if @categories.count != 0 %>
+          <table class="table">
+            <tr>
+              <th>作成者</th>
+              <th>タイトル</th>
+              <th>カテゴリー</th>
+              <th>いいね数</th>
+              <th></th>
+            </tr>
+            <% @categories.each do |category| %>
+              <% category.notes.each do |note| %>
+                <% if note.publish_status == "publish" %>
+                  <tr>
+                    <td>
+                      <%= link_to customer_path(note.customer) ,class: "text-dark" do %>
+                        <%= image_tag note.customer.get_profile_image(25,25) , class: "rounded-circle" %>
+                        <%= note.customer.name %>
+                      <% end %>
+                    </td>
+                    <td><%= link_to note.title , note_path(note) , class: "text-dark" %></td>
+                    <td>
+                      <% if note.category_id != nil %>
+                        <%= note.category.name %>
+                      <% end %>
+                    </td>
+                    <% if customer_signed_in? %>
+                      <td class="favorite-<%= note.id %>"><%= render "public/favorites/like", note: note %></td>
+                    <% else %>
+                      <td><%= note.favorites.count %></td>
+                    <% end %>
+                    <td><%= link_to "見る", note_path(note),class: "btn btn-primary" %></td>
+                  </tr>
+                <% end %>
+              <% end %>
+            <% end %>
+          </table>
+        <% else %>
+          <p>見つかりませんでした</p>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+</div>
