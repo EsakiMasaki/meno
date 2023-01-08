@@ -23,7 +23,7 @@ Rails.application.routes.draw do
       get "favorite" => "favorites#favorite"
     end
 
-    resources :categories, only: [:create,:destroy]
+    resources :categories, only: [:show,:create,:edit,:destroy,:update]
 
   end
 

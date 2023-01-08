@@ -45,18 +45,18 @@
   </div>
   <% @categories.each do |category| %>
     <div class="row">
-      <div class="col-5">
-        <p><i class="fa-regular fa-folder"></i> <%= category.name %></p>
+      <div class="col-12">
+        <details>
+        <summary>
+          <i class="fa-regular fa-folder"></i> <%= link_to category.name , category_path(category) , class: "text-dark" %>
+        </summary>
+        
         <% category.notes.order(:title).each do |note| %>
           <% if (note.publish_status == "publish") || (current_customer == @customer) %>
-            <p class="pl-3"><i class="fa-regular fa-file"></i> <%= link_to note.title , note_path(note),class: "text-dark" %></p>
+            <p class="pl-3 mt-3"><i class="fa-regular fa-file"></i> <%= link_to note.title , note_path(note),class: "text-dark" %></p>
           <% end %>
         <% end %>
-      </div>
-      <div class="col-3">
-        <% if current_customer == @customer %>
-          <%= link_to "削除", category_path(category) ,method: :delete, class: "btn btn-sm btn-danger" %>
-        <% end %>
+        </details>
       </div>
     </div>
   <% end %>

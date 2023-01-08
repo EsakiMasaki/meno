@@ -1,0 +1,13 @@
+<div class="container">
+  <div class="row">
+    <div class="col-8">
+      <h2><%= @category.name %></h2>
+    </div>
+    <div class="col-4">
+      <% if current_customer == @category.customer %>
+        <%= link_to "編集", edit_category_path(@category) , class: "btn btn-sm btn-success" %>
+        <%= link_to "削除", category_path(@category) ,method: :delete, class: "btn btn-sm btn-danger", "data-confirm" => "本当に削除しますか？" %>
+      <% end %>
+    </div>
+  </div>
+</div>

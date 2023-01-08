@@ -1,0 +1,13 @@
+<div class="container">
+  <h1>カテゴリー編集</h1>
+
+  <%= form_with model: @category, url: category_path(@category), method: :patch do |f| %>
+    <div class="row mt-5">
+      <%= f.label "カテゴリー名" %><br>
+      <%= f.text_field :name ,class: "form-control" %>
+    </div>
+    <div class="row mt-5">
+      <%= f.submit "編集", class: "btn btn-success mx-auto" %>
+    </div>
+  <% end %>
+</div>
