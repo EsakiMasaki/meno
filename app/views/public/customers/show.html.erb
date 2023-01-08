@@ -1,2 +1,63 @@
-<h1>Public::Customers#show</h1>
-<p>Find me in app/views/public/customers/show.html.erb</p>
+<div class="container">
+  <div class="row">
+    <div class="col-5">
+      <h1><%= image_tag @customer.get_profile_image(50,50),class: "rounded-circle mb-2 mr-2" %><%= @customer.name %></h1>
+    </div>
+    <div class="col-5">
+      <%= link_to "ユーザー一覧" , customers_path ,class: "btn btn-primary" %>
+
+      <% if @customer != current_customer %>
+        <% if current_customer.followings?(@customer) %>
+          <%= link_to "フォローを外す" , customer_relationships_path(@customer) , method: :delete, class: "btn btn-danger" %>
+        <% else %>
+          <%= link_to "フォローする" , customer_relationships_path(@customer) , method: :post, class: "btn btn-info" %>
+        <% end %>
+      <% else %>
+        <%= link_to "編集" , edit_customer_path(@customer), class: "btn btn-success" %>
+        <%= link_to "お気に入り" , note_favorite_path(@customer), class: "btn btn-warning" %>
+      <% end %>
+    </div>
+  </div>
+  <% if @customer.introduction != nil %>
+    <div class="row">
+      <div class="col-5">
+        <h3>プロフィール</h3>
+        <%= safe_join(@customer.introduction.split("\n"), tag(:br)) %>
+      </div>
+    </div>
+  <% end %>
+  <div class="row">
+    <%= link_to customer_followings_path(@customer) , class: "text-dark" do %>
+      <small class="mx-3">フォロー数:<%= @customer.followings.count %></small>
+    <% end %>
+    <%= link_to customer_followers_path(@customer) , class: "text-dark" do %>
+      <small>フォロワー数:<%= @customer.followers.count %></small>
+    <% end %>
+  </div>
+  <h3 class="mt-5">カテゴリー</h3>
+  <div class="row mb-5">
+    <% if current_customer == @customer %>
+      <%= form_with model: @category , url: categories_path, method: :post do |f| %>
+        <%= f.text_field :name %>
+        <%= f.submit "追加" %>
+      <% end %>
+    <% end %>
+  </div>
+  <% @categories.each do |category| %>
+    <div class="row">
+      <div class="col-5">
+        <p><%= category.name %></p>
+        <% category.notes.order(:title).each do |note| %>
+          <% if (note.publish_status == "publish") || (current_customer == @customer) %>
+            <p class="pl-3"><%= link_to note.title , note_path(note),class: "text-dark" %></p>
+          <% end %>
+        <% end %>
+      </div>
+      <div class="col-3">
+        <% if current_customer == @customer %>
+          <%= link_to "削除", category_path(category) ,method: :delete, class: "btn btn-sm btn-danger" %>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+</div>

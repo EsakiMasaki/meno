@@ -12,7 +12,7 @@ class Customer < ApplicationRecord
   has_many :followers , through: :reverse_of_relationships , source: :follower
 
   def self.looks(word)
-    User.where("name LIKE?", "%#{word}%")
+    Customer.where("name LIKE?", "%#{word}%")
   end
 
   def followings?(customer)
