@@ -11,7 +11,7 @@
       </tr>
       <% @favorites.each do |favorite| %>
         <tr>
-          <td><%= favorite.note.title %></td>
+          <td><%= link_to favorite.note.title , note_path(favorite.note), class: "text-dark" %></td>
           <td></td>
           <td class="favorite-<%= favorite.note.id %>"><%= render "public/favorites/like", note: favorite.note %></td>
           <td><%= link_to "見る", note_path(favorite.note),class: "btn btn-primary" %></td>

@@ -46,10 +46,10 @@
   <% @categories.each do |category| %>
     <div class="row">
       <div class="col-5">
-        <p><%= category.name %></p>
+        <p><i class="fa-regular fa-folder"></i> <%= category.name %></p>
         <% category.notes.order(:title).each do |note| %>
           <% if (note.publish_status == "publish") || (current_customer == @customer) %>
-            <p class="pl-3"><%= link_to note.title , note_path(note),class: "text-dark" %></p>
+            <p class="pl-3"><i class="fa-regular fa-file"></i> <%= link_to note.title , note_path(note),class: "text-dark" %></p>
           <% end %>
         <% end %>
       </div>
