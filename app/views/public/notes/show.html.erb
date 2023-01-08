@@ -1,4 +1,4 @@
-<div class="container bg-white rounded-lg ml-5">
+<div class="container bg-white rounded-lg">
   <div class="row mt-5">
     <div class="col-12 my-3">
       <span>作成日: <%= @note.created_at.strftime("%Y/%m/%d") %></span>
@@ -19,25 +19,25 @@
     </div>
   </div>
 
-  <div class="row">
+  <div class="row mt-5">
     <div class="col-12">
+      <h1 class="font-weight-bold"><%= @note.title %></h1>
       <% if @note.category_id != nil %>
         <p><%= @note.category.name %></p>
       <% end %>
-      <h1><%= @note.title %></h1>
-      <h3>できるようになること</h3>
+      <h3 class="mt-5">できるようになること</h3>
       <p><%= safe_join(@note.can.split("\n"),tag(:br)) %></p>
       <% if @note.necessities != "" %>
-        <h3>必要なもの</h3>
+        <h3 class="mt-5">必要なもの</h3>
         <p><%= safe_join(@note.necessities.split("\n"),tag(:br)) %></p>
       <% end %>
-      <h3>手順</h3>
+      <h3 class="mt-5">手順</h3>
       <ol>
         <% @note.note_procedures.each do |procedure| %>
           <li><%= procedure.procedure %></li>
         <% end %>
       </ol>
-      <h3>手順説明</h3>
+      <h3 class="mt-5">手順説明</h3>
       <% num = 0 %>
       <% @note.note_procedures.each do |procedure| %>
         <% num += 1 %>
@@ -48,7 +48,7 @@
         <p class="mb-3"><%= safe_join(procedure.explanation.split("\n"),tag(:br)) %></p>
       <% end %>
 
-      <h3>まとめ</h3>
+      <h3 class="mt-5">まとめ</h3>
       <p><%= safe_join(@note.conclude.split("\n"),tag(:br)) %></p>
     </div>
   </div>
