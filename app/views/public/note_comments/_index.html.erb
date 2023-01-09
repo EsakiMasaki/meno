@@ -1,9 +1,9 @@
-<table>
+<table class="col-10">
   <% note.note_comments.each do |comment| %>
     <% if (comment.post_status == "comment") || (current_customer == comment.customer) %>
       <tr>
         <td>
-          <%= link_to customer_path(comment.customer) do %>
+          <%= link_to customer_path(comment.customer), class: "text-dark" do %>
             <%= image_tag comment.customer.get_profile_image(25,25), class: "rounded-circle" %>
             投稿者:<%= comment.customer.name %>
           <% end %>
