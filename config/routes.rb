@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  # 以下カスタマー側のルーティング
    devise_for :customers,skip: [:passwords], controllers: {
     registrations: "public/registrations",
     sessions: "public/sessions"
@@ -28,7 +29,7 @@ Rails.application.routes.draw do
   end
 
 
-
+  # 以下アドミン側のルーティング
   devise_for :admin,skip: [:passwords,:registrations], controllers: {
     sessions: "admin/sessions"
   }

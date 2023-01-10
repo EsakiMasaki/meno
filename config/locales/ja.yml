@@ -1,4 +1,6 @@
 ja:
+
+  # enum日本語化
   enums:
     note:
       publish_status:
@@ -9,3 +11,16 @@ ja:
       post_status:
         comment: "コメント"
         memo: "メモ"
+
+
+  # エラーメッセージ日本語化
+  activerecord:
+    attributes:
+      note:
+        title: "タイトル"
+        can: "できること"
+        conclude: "まとめ"
+
+      note_procedures:
+        procedure: "手順"
+        explanation: "手順説明"

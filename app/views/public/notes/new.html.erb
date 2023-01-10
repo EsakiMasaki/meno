@@ -1,23 +1,33 @@
 <div class="container mt-5">
   <h1>ノート作成</h1>
 
+  <!--ノート作成フォーム-->
   <%= form_with model: @note , url: notes_path , method: :post do |f| %>
+    <!--タイトル-->
     <div class="row mt-3">
       <div class="col-12">
         <div class="bg-dark text-center pt-2">
           <%= f.label "タイトル",class: "text-white" %>
         </div>
         <%= f.text_field :title ,placeholder: "タイトルを記入" ,class: "form-control" %>
+        <!--エラーメッセージ-->
+        <%= render "error_messages", model: @form, attribute: :title, note: @note %>
       </div>
     </div>
+
+    <!--ノートの目的-->
     <div class="row mt-3">
       <div class="col-12">
         <div class="bg-dark text-center pt-2">
           <%= f.label "できること",class: "text-white" %>
         </div>
         <%= f.text_area :can,placeholder: "この記事を見ることで、できるようになることを記入",class: "form-control" %>
+        <!--エラーメッセージ-->
+        <%= render "error_messages", model: @form, attribute: :can, note: @note %>
       </div>
     </div>
+
+    <!--必要なもの-->
     <div class="row mt-3">
       <div class="col-12">
         <div class="bg-dark text-center pt-2">
@@ -26,6 +36,8 @@
         <%= f.text_area :necessities , placeholder: "必要なものを記入" , class: "form-control" %>
       </div>
     </div>
+
+    <!--フォームを追加する記述-->
     <div class="row mt-3">
       <div class="col-12">
         <div class="text-right bg-dark p-2">
@@ -33,9 +45,22 @@
         </div>
       </div>
     </div>
+
+    <!--フォームを追加したときに表示される-->
     <div class="row">
       <div class="col-12">
         <div class="texts">
+          <!--エラーメッセージ-->
+          <% if @note.errors.any? %>
+            <ul class="pl-0">
+              <% @note.errors.full_messages[0,1].each do |message| %>
+                <% if message.include?("手順") %>
+                  <li class="error-message"><%= "※ #{message}" %></li>
+                <% end %>
+              <% end %>
+            </ul>
+          <% end %>
+          <!--フォームを表示する-->
           <%= f.fields_for :note_procedures do |t| %>
             <%= render "note_procedure_fields", f: t %>
           <% end %>
@@ -43,14 +68,20 @@
         <div id="detail-association-insertion-point"></div>
       </div>
     </div>
+
+    <!--まとめ-->
     <div class="row mt-3">
       <div class="col-12">
         <div class="bg-dark text-center pt-2">
           <%= f.label "まとめ",class: "text-white" %>
         </div>
         <%= f.text_area :conclude , placeholder: "まとめを記入" , class: "form-control" %>
+        <!--エラーメッセージ-->
+        <%= render "error_messages", model: @form, attribute: :conclude, note: @note %>
       </div>
     </div>
+
+    <!--カテゴリー選択機能-->
     <div class="row mt-5">
       <div class="col-12">
         <div class="text-center">
@@ -59,6 +90,8 @@
         </div>
       </div>
     </div>
+
+    <!--公開ステータス-->
     <div class="row mt-5">
       <div class="col-12">
         <div class="text-center">
@@ -70,6 +103,8 @@
         </div>
       </div>
     </div>
+
+    <!--フォーム保存ボタン-->
     <div class="row my-5">
       <div class="col-12">
         <div class="text-center mt-3">
@@ -77,5 +112,6 @@
         </div>
       </div>
     </div>
+
   <% end %>
 </div>
