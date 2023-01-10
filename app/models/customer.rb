@@ -11,6 +11,8 @@ class Customer < ApplicationRecord
   has_many :followings , through: :relationships , source: :followed
   has_many :followers , through: :reverse_of_relationships , source: :follower
 
+  validates :name, presence: true
+
   def self.looks(word)
     Customer.where("name LIKE?", "%#{word}%")
   end

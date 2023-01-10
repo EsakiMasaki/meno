@@ -24,3 +24,9 @@ ja:
       note_procedures:
         procedure: "手順"
         explanation: "手順説明"
+
+      category:
+        name: "カテゴリー名"
+
+      customer:
+        name: "ユーザー名"

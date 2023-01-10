@@ -7,6 +7,8 @@
     <div class="row mt-5">
       <%= f.label "名前" %><br>
       <%= f.text_field :name ,class: "form-control" %>
+      <!--エラーメッセージ-->
+      <%= render "error_messages", model: @form , attribute: :name , customer: @customer %>
     </div>
     <div class="row mt-4">
       <%= f.label "画像" %>

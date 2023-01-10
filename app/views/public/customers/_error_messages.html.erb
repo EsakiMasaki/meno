@@ -1,0 +1,7 @@
+<% if customer.errors.any? %>
+  <ul class="pl-0">
+    <% customer.errors.full_messages_for(attribute).each do |message| %>
+      <li class="error-message"><%= "※ #{message}" %></li>
+    <% end %>
+  </ul>
+<% end %>

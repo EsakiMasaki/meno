@@ -1,0 +1,7 @@
+<% if category.errors.any? %>
+  <ul class="pl-3">
+    <% category.errors.full_messages_for(attribute).each do |message| %>
+      <li class="error-message"><%= "※ #{message}" %></li>
+    <% end %>
+  </ul>
+<% end %>

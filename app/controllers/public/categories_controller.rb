@@ -8,15 +8,18 @@ class Public::CategoriesController < ApplicationController
     category.save
     redirect_to request.referer
   end
-  
+
   def edit
     @category = Category.find(params[:id])
   end
 
   def update
-    category = current_customer.categories.find(params[:id])
-    category.update(category_params)
-    redirect_to customer_path(current_customer)
+    @category = current_customer.categories.find(params[:id])
+    if @category.update(category_params)
+      redirect_to customer_path(current_customer)
+    else
+      render :edit
+    end
   end
 
   def destroy
