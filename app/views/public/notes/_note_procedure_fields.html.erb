@@ -1,11 +1,15 @@
-<div class="nested-fields">
-
-  <%= f.text_field :procedure, placeholder: "手順をここに記入" ,class: "form-control" %>
-  <div class="image my-3">
-    <%= f.file_field :procedure_image, accept: "image/*" %>
-  </div>
-  <%= f.text_area :explanation, rows: 4, placeholder: "手順の詳細説明を記入" ,class: "form-control" %>
-  <div class="my-3 text-center">
-    <%= link_to_remove_association "削除" ,f ,class: "btn btn-sm btn-danger" %>
+<div class="nested-fields border border-dark rounded mb-3">
+  <div class="col-10 mx-auto mt-3">
+    <%= f.label "手順" %>
+    <%= f.text_field :procedure, placeholder: "手順をここに記入" ,class: "form-control mb-2" %>
+    <%= f.label "画像" %>
+    <div class="image mb-3">
+      <%= f.file_field :procedure_image, accept: "image/*" %>
+    </div>
+    <%= f.label "手順説明" %>
+    <%= f.text_area :explanation, rows: 4, placeholder: "手順の詳細説明を記入" ,class: "form-control mb-2" %>
+    <div class="my-3 text-center">
+      <%= link_to_remove_association "削除" ,f ,class: "btn btn-sm btn-danger" %>
+    </div>
   </div>
 </div>
