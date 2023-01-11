@@ -9,7 +9,7 @@ class ApplicationController < ActionController::Base
 
   def after_sign_out_path_for(resource)
     flash[:notice] = "ログアウトしました"
-    root_path
+    new_customer_session_path
   end
 
   def permitted_parameters
