@@ -1,6 +1,6 @@
 <table class="col-10">
   <% note.note_comments.each do |comment| %>
-    <% if (comment.post_status == "comment") || (current_customer == comment.customer) %>
+    <% if (comment.post_status == "memo") && (current_customer == comment.customer) %>
       <tr>
         <td>
           <%= link_to customer_path(comment.customer), class: "text-dark" do %>

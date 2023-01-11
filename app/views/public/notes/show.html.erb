@@ -97,16 +97,31 @@
 <% end %>
 
 <% if customer_signed_in? %>
-  <div class="container bg-white rounded-lg">
+  <div class="container bg-white rounded-lg mb-5">
+
     <div class="row mb-5">
       <div class="col-12 text-center mt-5">
         <%= render "public/note_comments/form", note: @note, comment: @comment %>
       </div>
     </div>
-    <div class="row mb-5">
-      <div class="comments-index col-12 text-center">
-        <%= render "public/note_comments/index", note: @note %>
+
+    <details>
+      <summary><b>コメント</b></summary>
+      <div class="row mb-5">
+        <div class="comments-index-comment col-12">
+          <%= render "public/note_comments/index_comment", note: @note %>
+        </div>
       </div>
-    </div>
+    </details>
+
+    <details>
+      <summary><b>メモ</b></summary>
+      <div class="row mb-5">
+        <div class="comments-index-memo col-12">
+          <%= render "public/note_comments/index_memo", note: @note %>
+        </div>
+      </div>
+    </details>
+
   </div>
 <% end %>
