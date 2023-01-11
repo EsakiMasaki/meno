@@ -16,6 +16,7 @@ class Public::CategoriesController < ApplicationController
   def update
     @category = current_customer.categories.find(params[:id])
     if @category.update(category_params)
+      flash[:notice] = "カテゴリー名を編集しました"
       redirect_to customer_path(current_customer)
     else
       render :edit

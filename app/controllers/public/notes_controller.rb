@@ -7,6 +7,7 @@ class Public::NotesController < ApplicationController
   def create
     @note = current_customer.notes.new(note_params)
     if @note.save
+      flash[:notice] = "ノートを作成しました"
       redirect_to note_path(@note)
     else
       render :new
@@ -38,6 +39,7 @@ class Public::NotesController < ApplicationController
   def update
     @note = current_customer.notes.find(params[:id])
     if @note.update(note_params)
+      flash[:notice] = "ノートを編集しました"
       redirect_to note_path(@note)
     else
       render :edit
@@ -47,6 +49,7 @@ class Public::NotesController < ApplicationController
   def destroy
     @note = Note.find(params[:id])
     if @note.destroy
+      flash[:notice] = "ノートを削除しました"
       redirect_to notes_path
     else
       render :show
