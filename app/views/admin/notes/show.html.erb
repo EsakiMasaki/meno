@@ -1,0 +1,61 @@
+<div class="container bg-white rounded-lg">
+  <div class="row mt-5">
+    <div class="col-8 my-3">
+      <span>作成日: <%= @note.created_at.strftime("%Y/%m/%d") %></span>
+      <span class="ml-3">最終更新日: <%= @note.updated_at.strftime("%Y/%m/%d") %></span>
+    </div>
+  </div>
+
+  <div class="row mt-5">
+    <div class="col-12">
+      <h1 class="font-weight-bold h-title"><%= @note.title %></h1>
+      <% if @note.category_id != nil %>
+        <p class="text"><i class="fa-solid fa-tag"></i> <%= @note.category.name %></p>
+      <% end %>
+      <h3 class="h-frame">できるようになること</h3>
+      <p class="text"><%= safe_join(@note.can.split("\n"),tag(:br)) %></p>
+      <% if @note.necessities != "" %>
+        <h3 class="h-frame">必要なもの</h3>
+        <p class="text"><%= safe_join(@note.necessities.split("\n"),tag(:br)) %></p>
+      <% end %>
+      <h3 class="h-frame">手順</h3>
+      <% num = 0 %>
+      <% @note.note_procedures.each do |procedure| %>
+        <% num += 1 %>
+        <p class="text"><%= link_to "#{num}. #{procedure.procedure}", "#procedure-#{num}", class: "text-dark" %></p>
+      <% end %>
+      <h3 class="h-frame">手順説明</h3>
+      <% num = 0 %>
+      <% @note.note_procedures.each do |procedure| %>
+        <% num += 1 %>
+        <h4 class="h-double" id="procedure-<%= num %>"><%= "#{num}. #{procedure.procedure}" %></h4>
+        <% if procedure.procedure_image.attached? %>
+          <p class="text-center text"><%= image_tag procedure.get_procedure_image(700,500) %></p>
+        <% end %>
+        <p class="mb-3 text"><%= safe_join(procedure.explanation.split("\n"),tag(:br)) %></p>
+      <% end %>
+
+      <h3 class="h-frame">まとめ</h3>
+      <p class="text"><%= safe_join(@note.conclude.split("\n"),tag(:br)) %></p>
+    </div>
+  </div>
+
+  <div class="row my-5">
+    <div class="col-12 text-center mb-5">
+      <%= link_to "削除" , admin_note_path(@note), method: :delete , "data-confirm" => "本当に削除しますか？" , class: "btn btn-sm btn-danger" %>
+    </div>
+  </div>
+</div>
+
+<% if admin_signed_in? %>
+  <div class="container bg-white rounded-lg my-5 py-5">
+    <details class="my-3">
+      <summary class="comment-title rounded-lg text-center"><b>コメント</b></summary>
+      <div class="row my-5">
+        <div class="comments-index-comment col-12">
+          <%= render "admin/note_comments/index_comment", note: @note %>
+        </div>
+      </div>
+    </details>
+  </div>
+<% end %>

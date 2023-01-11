@@ -4,10 +4,6 @@
   </div>
 
   <%= form_with model: @customer, url: admin_customer_path(@customer), method: :patch do |f| %>
-    <%#= f.hidden_field :name ,class: "form-control" %>
-    <%#= f.hidden_field :profile_image, accept: "image/*" %>
-    <%#= f.hidden_field :introduction ,class: "form-control" %>
-
     <div class="row my-5">
       <div class="col-12 text-center">
         <%= f.radio_button :is_deleted, :false %><b class="mr-3">有効</b>

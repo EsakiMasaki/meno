@@ -1,0 +1,24 @@
+<div class="col-9 mx-auto comment-background p-5 rounded-lg">
+  <% note.note_comments.each do |comment| %>
+    <% if comment.post_status == "comment" %>
+      <% if admin_signed_in? %>
+        <div class="row mb-4">
+          <div class="col-2">
+            <%= link_to customer_path(comment.customer), class: "text-dark" do %>
+              <%= image_tag comment.customer.get_profile_image(50,50), class: "rounded-circle" %><br>
+              <%= comment.customer.name %>
+            <% end %>
+          </div>
+          <div class="col-8 other-comment">
+            <%= safe_join(comment.comment.split("\n"), tag(:br)) %>
+          </div>
+        </div>
+        <div class="row">
+          <div class="offset-9 text-right mb-4">
+            <%= link_to "削除", admin_note_note_comment_path(comment.note,comment),method: :delete , class: "text-dark", remote: true , "data-confirm" => "本当に削除しますか？" %>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
+  <% end %>
+</div>

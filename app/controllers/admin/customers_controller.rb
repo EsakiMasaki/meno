@@ -3,7 +3,6 @@ class Admin::CustomersController < ApplicationController
 
   def show
     @customer = Customer.find(params[:id])
-    @category = @customer.categories.new
     @categories = @customer.categories.all.order(:name)
   end
 

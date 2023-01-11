@@ -25,12 +25,12 @@
       <div class="col-12">
         <details>
         <summary class="mb-3">
-          <i class="fa-regular fa-folder"></i> <%= link_to category.name , category_path(category) , class: "text-dark" %>
+          <i class="fa-regular fa-folder"></i> <%= category.name  %>
         </summary>
 
         <% category.notes.order(:title).each do |note| %>
           <% if (note.publish_status == "publish") || (current_customer == @customer) %>
-            <p class="pl-3 mt-3"><i class="fa-regular fa-file"></i> <%= link_to note.title , note_path(note),class: "text-dark" %></p>
+            <p class="pl-3 mt-3"><i class="fa-regular fa-file"></i> <%= link_to note.title , admin_note_path(note),class: "text-dark" %></p>
           <% end %>
         <% end %>
         </details>
