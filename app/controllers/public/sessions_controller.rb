@@ -27,9 +27,12 @@ class Public::SessionsController < Devise::SessionsController
   # end
 
   def customer_state
-     @customer = Customer.find_by(email: params[:customer][:email])
-     if @customer.valid_password?(params[:customer][:password]) && @customer.is_deleted == true
-       redirect_to new_customer_session_path
-     end
+    @customer = Customer.find_by(email: params[:customer][:email])
+    if @customer
+      if @customer.valid_password?(params[:customer][:password]) && @customer.is_deleted == true
+        flash[:notice] = "このアカウントは管理者により凍結されています"
+        redirect_to new_customer_session_path
+      end
+    end
   end
 end
