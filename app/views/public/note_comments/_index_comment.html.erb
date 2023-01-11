@@ -1,26 +1,36 @@
-<table class="col-10">
+<div class="col-9 mx-auto comment-background p-5 rounded-lg">
   <% note.note_comments.each do |comment| %>
     <% if comment.post_status == "comment" %>
-      <tr>
-        <td>
-          <%= link_to customer_path(comment.customer), class: "text-dark" do %>
-            <%= image_tag comment.customer.get_profile_image(25,25), class: "rounded-circle" %>
-            投稿者:<%= comment.customer.name %>
-          <% end %>
-          <br>
-          <%= safe_join(comment.comment.split("\n"), tag(:br)) %>
-        </td>
-        <% if current_customer == comment.customer %>
-          <td>
-            <% if comment.post_status == "comment" %>
-              <%= NoteComment.post_statuses_i18n[:comment] %>
-            <% else %>
-              <%= NoteComment.post_statuses_i18n[:memo] %>
+      <% if current_customer == comment.customer %>
+        <div class="row mb-1">
+          <div class="offset-2 col-8 my-comment">
+            <%= safe_join(comment.comment.split("\n"), tag(:br)) %>
+          </div>
+          <div class="col-2">
+            <%= link_to customer_path(comment.customer), class: "text-dark" do %>
+              <%= image_tag comment.customer.get_profile_image(50,50), class: "rounded-circle" %><br>
+              <%= comment.customer.name %>
             <% end %>
-            <%= link_to "削除", note_note_comment_path(comment.note,comment),method: :delete , remote: true %>
-          </td>
-        <% end %>
-      </tr>
+          </div>
+        </div>
+        <div class="row">
+          <div class="offset-9 text-right mb-4">
+            <%= link_to "削除", note_note_comment_path(comment.note,comment),method: :delete , class: "text-dark", remote: true %>
+          </div>
+        </div>
+      <% else %>
+        <div class="row mb-4">
+          <div class="col-2">
+            <%= link_to customer_path(comment.customer), class: "text-dark" do %>
+              <%= image_tag comment.customer.get_profile_image(50,50), class: "rounded-circle" %><br>
+              <%= comment.customer.name %>
+            <% end %>
+          </div>
+          <div class="col-8 other-comment">
+            <%= safe_join(comment.comment.split("\n"), tag(:br)) %>
+          </div>
+        </div>
+      <% end %>
     <% end %>
   <% end %>
-</table>
+</div>

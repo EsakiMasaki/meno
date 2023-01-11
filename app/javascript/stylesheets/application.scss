@@ -26,6 +26,107 @@
   margin: 1em 4em 0;
 }
 
+//コメントとメモ
+// タイトル
+.comment-title {
+  width: 75%;
+  margin: 0 auto;
+  font-size: 1.5em;
+  background-color: rgba(255,150,0,0.5);
+}
+
+.memo-title {
+  width: 75%;
+  margin: 0 auto;
+  font-size: 1.5em;
+  background-color: rgba(255,220,0,0.5);
+}
+
+// 背景
+.comment-background {
+  background-color: rgba(255,150,0,0.1);
+}
+
+.memo-background {
+  background-color: rgba(255,220,0,0.1);
+}
+
+// 枠線(他の人のコメント)
+.other-comment{
+  position: relative;
+  padding: 20px;
+  background-color: #fff;
+  border: 2px solid #000;
+  border-radius: 10px;
+}
+
+.other-comment::before{
+  content: '';
+  position: absolute;
+  display: block;
+  width: 0;
+  height: 0;
+  left: -15px;
+  top: 20px;
+  border-right: 15px solid #000;
+  border-top: 15px solid transparent;
+  border-bottom: 15px solid transparent;
+}
+
+.other-comment::after{
+  content: '';
+  position: absolute;
+  display: block;
+  width: 0;
+  height: 0;
+  left: -12px;
+  top: 20px;
+  border-right: 15px solid #fff;
+  border-top: 15px solid transparent;
+  border-bottom: 15px solid transparent;
+}
+
+// 枠線(自分のコメント)
+.my-comment{
+  position: relative;
+  padding: 20px;
+  background-color: #fff;
+  border: 2px solid #000;
+  border-radius: 10px;
+}
+
+.my-comment::before{
+  content: '';
+  position: absolute;
+  display: block;
+  width: 0;
+  height: 0;
+  right: -15px;
+  top: 20px;
+  border-left: 15px solid #000;
+  border-top: 15px solid transparent;
+  border-bottom: 15px solid transparent;
+}
+
+.my-comment::after{
+  content: '';
+  position: absolute;
+  display: block;
+  width: 0;
+  height: 0;
+  right: -12px;
+  top: 20px;
+  border-left: 15px solid #fff;
+  border-top: 15px solid transparent;
+  border-bottom: 15px solid transparent;
+}
+
+// メモ枠線
+.memo {
+  border: 2px solid #000;
+}
+
+
 // エラーメッセージ
 .error-message {
   color: #f00;

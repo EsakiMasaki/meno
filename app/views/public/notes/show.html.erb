@@ -105,17 +105,17 @@
       </div>
     </div>
 
-    <details>
-      <summary><b>コメント</b></summary>
-      <div class="row mb-5">
+    <details class="mb-3">
+      <summary class="comment-title rounded-lg text-center"><b>コメント</b></summary>
+      <div class="row my-5">
         <div class="comments-index-comment col-12">
           <%= render "public/note_comments/index_comment", note: @note %>
         </div>
       </div>
     </details>
 
-    <details>
-      <summary><b>メモ</b></summary>
+    <details class="pb-3">
+      <summary class="memo-title mb-5 rounded-lg text-center"><b>メモ</b></summary>
       <div class="row mb-5">
         <div class="comments-index-memo col-12">
           <%= render "public/note_comments/index_memo", note: @note %>
