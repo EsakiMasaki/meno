@@ -1,0 +1,21 @@
+<div class="container my-5 bg-white p-5 rounded-lg">
+  <div class="row mb-5">
+    <h1><%= "#{@customer.name}さんの会員ステータス編集" %></h1>
+  </div>
+
+  <%= form_with model: @customer, url: admin_customer_path(@customer), method: :patch do |f| %>
+    <%#= f.hidden_field :name ,class: "form-control" %>
+    <%#= f.hidden_field :profile_image, accept: "image/*" %>
+    <%#= f.hidden_field :introduction ,class: "form-control" %>
+
+    <div class="row my-5">
+      <div class="col-12 text-center">
+        <%= f.radio_button :is_deleted, :false %><b class="mr-3">有効</b>
+        <%= f.radio_button :is_deleted, :true %><b>退会</b>
+      </div>
+    </div>
+    <div class="row mt-4">
+      <%= f.submit "編集", class: "btn btn-success mx-auto" %>
+    </div>
+  <% end %>
+</div>

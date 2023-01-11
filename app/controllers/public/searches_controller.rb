@@ -1,4 +1,6 @@
 class Public::SearchesController < ApplicationController
+  before_action :authenticate_customer!, except: [:top,:about,:show,:search]
+
   def search
     @word = params[:word]
     if params[:customer_search]

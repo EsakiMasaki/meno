@@ -1,4 +1,6 @@
 class Public::CategoriesController < ApplicationController
+  before_action :authenticate_customer!, except: [:top,:about,:show,:search]
+
   def show
     @category = Category.find(params[:id])
   end

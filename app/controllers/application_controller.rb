@@ -1,6 +1,11 @@
 class ApplicationController < ActionController::Base
-  before_action :authenticate_customer!, except: [:top,:about,:show,:search]
   before_action :permitted_parameters ,if: :devise_controller?
+
+  def admin_match?
+    unless admin_signed_in?
+      redirect_to new_admin_session_path
+    end
+  end
 
   def after_sign_in_path_for(resource)
     flash[:notice] = "ログインしました"

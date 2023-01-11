@@ -1,4 +1,6 @@
 class Public::NoteCommentsController < ApplicationController
+  before_action :authenticate_customer!, except: [:top,:about,:show,:search]
+
   def create
     @note = Note.find(params[:note_id])
     comment = current_customer.note_comments.new(note_comment_params)

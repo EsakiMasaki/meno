@@ -1,9 +1,5 @@
-class Public::CustomersController < ApplicationController
-  before_action :authenticate_customer!, except: [:top,:about,:show,:search]
-
-  def index
-    @customers = Customer.all
-  end
+class Admin::CustomersController < ApplicationController
+  before_action :admin_match?
 
   def show
     @customer = Customer.find(params[:id])
@@ -18,8 +14,8 @@ class Public::CustomersController < ApplicationController
   def update
     @customer = Customer.find(params[:id])
     if @customer.update(customer_params)
-      flash[:notice] = "プロフィールを編集しました"
-      redirect_to customer_path(@customer)
+      flash[:notice] = "#{@customer.name}の会員ステータスを編集しました"
+      redirect_to admin_customer_path(@customer)
     else
       render :edit
     end
@@ -28,6 +24,6 @@ class Public::CustomersController < ApplicationController
   private
 
   def customer_params
-    params.require(:customer).permit(:name,:introduction,:profile_image)
+    params.require(:customer).permit(:is_deleted)
   end
 end

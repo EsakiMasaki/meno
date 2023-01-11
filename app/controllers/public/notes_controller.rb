@@ -1,4 +1,6 @@
 class Public::NotesController < ApplicationController
+  before_action :authenticate_customer!, except: [:top,:about,:show,:search]
+
   def new
     @note = Note.new
     @procedures = @note.note_procedures.build

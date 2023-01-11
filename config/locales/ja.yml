@@ -18,7 +18,7 @@ ja:
     attributes:
       note:
         title: "タイトル"
-        can: "できること"
+        can: "できるようになること"
         conclude: "まとめ"
 
       note_procedures:

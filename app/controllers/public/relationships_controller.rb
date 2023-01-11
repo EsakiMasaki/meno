@@ -1,4 +1,6 @@
 class Public::RelationshipsController < ApplicationController
+  before_action :authenticate_customer!, except: [:top,:about,:show,:search]
+
   def create
     relationship = current_customer.relationships.new(followed_id: params[:customer_id])
     relationship.save
