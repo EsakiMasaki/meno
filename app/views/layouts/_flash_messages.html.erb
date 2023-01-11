@@ -1,0 +1,9 @@
+<% if flash[:notice] %>
+  <% if flash[:notice].include?("作成") || flash[:notice].include?("ログイン") %>
+    <p class="notice-blue text-center py-3 rounded"><b><%= flash[:notice] %></b></p>
+  <% elsif flash[:notice].include?("編集") %>
+    <p class="notice-green text-center py-3 rounded"><b><%= flash[:notice] %></b></p>
+  <% else %>
+    <p class="notice-red text-center py-3 rounded"><b><%= flash[:notice] %></b></p>
+  <% end %>
+<% end %>

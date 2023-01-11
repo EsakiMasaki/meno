@@ -1,28 +1,31 @@
-<div class="container mt-5">
-  <h1>お気に入り一覧</h1>
-
-  <% if @favorites.count != 0 %>
-    <table class="table">
-      <tr>
-        <th>タイトル</th>
-        <th>カテゴリー</th>
-        <th>いいね数</th>
-        <th></th>
-      </tr>
-      <% @favorites.each do |favorite| %>
+<div class="container my-5 bg-white p-5 rounded-lg">
+  <div class="row mb-5">
+    <h1>お気に入り一覧</h1>
+  </div>
+  <div class="row mb-5">
+    <% if @favorites.count != 0 %>
+      <table class="table">
         <tr>
-          <td><%= link_to favorite.note.title , note_path(favorite.note), class: "text-dark" %></td>
-          <td>
-            <% if favorite.note.category_id != nil %>
-              <%= link_to favorite.note.category.name, category_path(favorite.note.category), class: "text-dark" %>
-            <% end %>
-          </td>
-          <td class="favorite-<%= favorite.note.id %>"><%= render "public/favorites/like", note: favorite.note %></td>
-          <td><%= link_to "見る", note_path(favorite.note),class: "btn btn-primary" %></td>
+          <th>タイトル</th>
+          <th>カテゴリー</th>
+          <th>いいね数</th>
+          <th></th>
         </tr>
-      <% end %>
-    </table>
-  <% else %>
-    <p>お気に入りはありません</p>
-  <% end %>
+        <% @favorites.each do |favorite| %>
+          <tr>
+            <td><%= link_to favorite.note.title , note_path(favorite.note), class: "text-dark" %></td>
+            <td>
+              <% if favorite.note.category_id != nil %>
+                <%= link_to favorite.note.category.name, category_path(favorite.note.category), class: "text-dark" %>
+              <% end %>
+            </td>
+            <td class="favorite-<%= favorite.note.id %>"><%= render "public/favorites/like", note: favorite.note %></td>
+            <td><%= link_to "見る", note_path(favorite.note),class: "btn btn-primary" %></td>
+          </tr>
+        <% end %>
+      </table>
+    <% else %>
+      <p>お気に入りはありません</p>
+    <% end %>
+  </div>
 </div>

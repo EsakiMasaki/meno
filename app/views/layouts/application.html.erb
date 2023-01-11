@@ -14,54 +14,17 @@
   <body class="bg-light">
 
     <header class="bg-dark shadow-sm">
-      <nav class="navbar navbar-expand-lg navbar-light">
-        <div class="container">
-          <%= link_to root_path ,class: "navbar-brand p-3" do %>
-            <%= image_tag 'logo.png', size: "70x50" %>
-          <% end %>
-          <button class="navbar-toggler bg-secondary" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarNavDropdown">
-            <ul class="navbar-nav ml-auto my-3">
-              <% if customer_signed_in? %>
-                <li class="nav-item"><%= link_to "ランキング", root_path ,class: "text-white ml-3" %></li>
-                <li class="nav-item"><%= link_to "マイページ", customer_path(current_customer) ,class: "text-white ml-3" %></li>
-                <li class="nav-item"><%= link_to "マイノート", notes_path ,class: "text-white ml-3" %></li>
-                <li class="nav-item"><%= link_to "ノート作成", new_note_path ,class: "text-white ml-3" %></li>
-                <li class="nav-item"><%= link_to "ログアウト",destroy_customer_session_path ,method: :delete ,class: "text-white ml-3" %></li>
-              <% else %>
-                <li class="nav-item"><%= link_to "ランキング", root_path ,class: "text-white ml-3" %></li>
-                <li class="nav-item"><%= link_to "About", about_path ,class: "text-white ml-3" %></li>
-                <li class="nav-item"><%= link_to "ログイン",new_customer_session_path ,class: "text-white ml-3" %></li>
-                <li class="nav-item"><%= link_to "新規登録",new_customer_registration_path ,class: "text-white ml-3" %></li>
-              <% end %>
-            </ul>
-          </div>
-        </div>
-      </nav>
+      <%= render "layouts/header" %>
     </header>
 
     <main class="min-vh-100">
-      <% if flash[:notice] %>
-        <% if flash[:notice].include?("作成") || flash[:notice].include?("ログイン") %>
-          <p class="notice-blue text-center py-3 rounded"><b><%= flash[:notice] %></b></p>
-        <% elsif flash[:notice].include?("編集") %>
-          <p class="notice-green text-center py-3 rounded"><b><%= flash[:notice] %></b></p>
-        <% else %>
-          <p class="notice-red text-center py-3 rounded"><b><%= flash[:notice] %></b></p>
-        <% end %>
-      <% end %>
+      <%= render "layouts/flash_messages" %>
 
       <%= yield %>
     </main>
 
     <footer class="bg-dark">
-      <div class="container">
-        <div class="row">
-          <p class="mx-auto text-white my-3">&copy;</p>
-        </div>
-      </div>
+      <%= render "layouts/footer" %>
     </footer>
 
   </body>
