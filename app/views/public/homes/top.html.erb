@@ -46,7 +46,11 @@
           <% if customer_signed_in? %>
             <td class="favorite-<%= note.id %>"><%= render "public/favorites/like", note: note %></td>
           <% else %>
-            <td><%= note.favorites.count %></td>
+            <td>
+              <%= link_to new_customer_session_path, class: "text-dark" do %>
+                <i class="fa-regular fa-heart"></i><%= note.favorites.count %>
+              <% end %>
+            </td>
           <% end %>
           <td><%= link_to "見る", note_path(note),class: "btn btn-primary" %></td>
         </tr>
