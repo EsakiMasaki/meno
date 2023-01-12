@@ -12,15 +12,23 @@
 
   <table class="table border">
     <tr>
+      <th class="bg-dark text-white"></th>
       <th class="bg-dark text-white">作成者</th>
       <th class="bg-dark text-white">タイトル</th>
       <th class="bg-dark text-white">カテゴリー</th>
       <th class="bg-dark text-white">いいね数</th>
       <th class="bg-dark text-white"></th>
     </tr>
+    <% num = 0 %>
     <% @notes.each do |note| %>
+
+      <!--ノートのステータスが公開になっていたら表示-->
       <% if note.publish_status == "publish" %>
+       <% num += 1 %>
         <tr>
+          <td>
+            <b><%= "#{num}位" %></b>
+          </td>
           <td>
             <%= link_to customer_path(note.customer) ,class: "text-dark" do %>
               <%= image_tag note.customer.get_profile_image(25,25) , class: "rounded-circle mb-1" %>
@@ -40,6 +48,12 @@
           <% end %>
           <td><%= link_to "見る", note_path(note),class: "btn btn-primary" %></td>
         </tr>
+
+        <!--100位まで表示する-->
+        <% if num == 100 %>
+          <% break %>
+        <% end %>
+
       <% end %>
     <% end %>
   </table>

@@ -14,6 +14,6 @@ class Public::FavoritesController < ApplicationController
   end
 
   def favorite
-    @favorites = current_customer.favorites.order(created_at: :desc)
+    @favorites = current_customer.favorites.page(params[:page]).order(created_at: :desc)
   end
 end

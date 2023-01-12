@@ -4,12 +4,12 @@
   </div>
   <div class="row mb-5">
     <% if @favorites.count != 0 %>
-      <table class="table">
+      <table class="table border">
         <tr>
-          <th>タイトル</th>
-          <th>カテゴリー</th>
-          <th>いいね数</th>
-          <th></th>
+          <th class="bg-dark text-white">タイトル</th>
+          <th class="bg-dark text-white">カテゴリー</th>
+          <th class="bg-dark text-white">いいね数</th>
+          <th class="bg-dark text-white"></th>
         </tr>
         <% @favorites.each do |favorite| %>
           <tr>
@@ -28,4 +28,5 @@
       <p>お気に入りはありません</p>
     <% end %>
   </div>
+  <%= paginate @favorites %>
 </div>
