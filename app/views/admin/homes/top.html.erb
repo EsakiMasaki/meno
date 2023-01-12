@@ -23,6 +23,7 @@
           <% end %>
         </td>
         <td>
+          <!--顧客が退会しているかどうかで条件分岐-->
           <% if customer.is_deleted == false %>
             <span class="text-success"><b>有効</b></span>
           <% else %>

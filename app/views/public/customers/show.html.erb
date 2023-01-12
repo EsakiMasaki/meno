@@ -4,10 +4,13 @@
       <h1><%= image_tag @customer.get_profile_image(50,50),class: "rounded-circle mb-2 mr-2" %><%= @customer.name %></h1>
     </div>
     <div class="col-5">
+      <!--ログインしているなら-->
       <% if customer_signed_in? %>
         <%= link_to "ユーザー一覧" , customers_path ,class: "btn btn-primary" %>
 
+        <!--現在のユーザーとページのユーザーが違うなら-->
         <% if @customer != current_customer %>
+          <!--フォローしているか確認-->
           <% if current_customer.followings?(@customer) %>
             <%= link_to "フォローを外す" , customer_relationships_path(@customer) , method: :delete, class: "btn btn-danger" %>
           <% else %>
@@ -20,6 +23,7 @@
       <% end %>
     </div>
   </div>
+  <!--プロフィールがあるか無いかで条件分岐-->
   <% if @customer.introduction != nil %>
     <div class="row">
       <div class="col-5">
@@ -29,6 +33,7 @@
     </div>
   <% end %>
   <div class="row">
+    <!--ログインしているなら-->
     <% if customer_signed_in? %>
       <%= link_to customer_followings_path(@customer) , class: "text-dark" do %>
         <small class="mx-3">フォロー数:<%= @customer.followings.count %></small>
@@ -38,8 +43,10 @@
       <% end %>
     <% end %>
   </div>
+
   <h3 class="mt-5">カテゴリー</h3>
   <div class="row mb-5">
+    <!--現在のユーザーとページのユーザーが同じなら-->
     <% if current_customer == @customer %>
       <%= form_with model: @category , url: categories_path, method: :post do |f| %>
         <%= f.text_field :name %>
@@ -56,6 +63,7 @@
         </summary>
 
         <% category.notes.order(:title).each do |note| %>
+          <!--ノートの公開ステータスが公開、または現在のユーザーとページのユーザーが同じなら-->
           <% if (note.publish_status == "publish") || (current_customer == @customer) %>
             <p class="pl-3 mt-3"><i class="fa-regular fa-file"></i> <%= link_to note.title , note_path(note),class: "text-dark" %></p>
           <% end %>

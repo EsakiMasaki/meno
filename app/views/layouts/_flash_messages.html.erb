@@ -1,6 +1,9 @@
+<!--フラッシュメッセージがあれば-->
 <% if flash[:notice] %>
+  <!--フラッシュメッセージに「作成」か「ログイン」の文字を含んでいれば-->
   <% if flash[:notice].include?("作成") || flash[:notice].include?("ログイン") %>
     <p class="notice-blue text-center py-3 rounded"><b><%= flash[:notice] %></b></p>
+  <!--フラッシュメッセージに「編集」の文字を含んでいれば-->
   <% elsif flash[:notice].include?("編集") %>
     <p class="notice-green text-center py-3 rounded"><b><%= flash[:notice] %></b></p>
   <% else %>

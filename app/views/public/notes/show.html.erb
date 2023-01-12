@@ -3,6 +3,7 @@
     <div class="col-8 my-3">
       <span>作成日: <%= @note.created_at.strftime("%Y/%m/%d") %></span>
       <span class="ml-3">最終更新日: <%= @note.updated_at.strftime("%Y/%m/%d") %></span>
+      <!--ログインしていれば-->
       <% if customer_signed_in? %>
         <span class="favorite-<%= @note.id %> ml-5">
           <%= render "public/favorites/like", note: @note %>
@@ -10,9 +11,11 @@
       <% end %>
     </div>
     <div class="col-4 my-3">
+      <!--現在のユーザーとページのユーザーが同じなら-->
       <% if current_customer == @note.customer %>
         <div class="text-right">
           公開ステータス:
+          <!--ノートの公開ステータスが公開であれば-->
           <% if @note.publish_status == "publish" %>
             <%= Note.publish_statuses_i18n[:publish] %>
           <% else %>
@@ -26,11 +29,13 @@
   <div class="row mt-5">
     <div class="col-12">
       <h1 class="font-weight-bold h-title"><%= @note.title %></h1>
+      <!--カテゴリーがあれば-->
       <% if @note.category_id != nil %>
         <p class="text"><i class="fa-solid fa-tag"></i> <%= link_to @note.category.name , category_path(@note.category),class: "text-dark" %></p>
       <% end %>
       <h3 class="h-frame">できるようになること</h3>
       <p class="text"><%= safe_join(@note.can.split("\n"),tag(:br)) %></p>
+      <!--必要なものがあれば-->
       <% if @note.necessities != "" %>
         <h3 class="h-frame">必要なもの</h3>
         <p class="text"><%= safe_join(@note.necessities.split("\n"),tag(:br)) %></p>
@@ -46,6 +51,7 @@
       <% @note.note_procedures.each do |procedure| %>
         <% num += 1 %>
         <h4 class="h-double" id="procedure-<%= num %>"><%= "#{num}. #{procedure.procedure}" %></h4>
+        <!--手順説明画像があるなら-->
         <% if procedure.procedure_image.attached? %>
           <p class="text-center text"><%= image_tag procedure.get_procedure_image(700,500) %></p>
         <% end %>
@@ -58,6 +64,7 @@
   </div>
 
   <div class="row my-5">
+    <!--現在のユーザーとページのユーザーが同じなら-->
     <% if current_customer == @note.customer %>
       <div class="col-12 text-center mb-5">
         <%= link_to "編集" , edit_note_path(@note), class: "btn btn-sm btn-success" %>
@@ -67,6 +74,7 @@
   </div>
 </div>
 
+<!--現在のユーザーとページのユーザーが違い、かつログインしているなら-->
 <% if (current_customer != @note.customer) && (customer_signed_in?) %>
   <div class="container bg-white rounded-lg my-5">
     <div class="row">
@@ -78,12 +86,14 @@
           <% end %>
         </h2>
         <div class="ml-5">
+          <!--プロフィールがあれば-->
           <% if @note.customer.introduction != nil %>
             <p class="my-5 ml-5">
               <%= safe_join(@note.customer.introduction.split("\n"), tag(:br)) %>
             </p>
           <% end %>
           <div class="ml-5">
+            <!--フォローしているかの確認-->
             <% if current_customer.followings?(@note.customer) %>
               <%= link_to "フォローを外す" , customer_relationships_path(@note.customer) , method: :delete, class: "btn btn-danger" %>
             <% else %>
@@ -96,15 +106,18 @@
   </div>
 <% end %>
 
+<!--ログインしていれば-->
 <% if customer_signed_in? %>
   <div class="container bg-white rounded-lg mb-5">
 
+    <!--コメントorメモフォーム-->
     <div class="row mb-5">
       <div class="col-12 text-center mt-5">
         <%= render "public/note_comments/form", note: @note, comment: @comment %>
       </div>
     </div>
 
+    <!--コメント表示-->
     <details class="mb-3">
       <summary class="comment-title rounded-lg text-center"><b>コメント</b></summary>
       <div class="row my-5">
@@ -114,6 +127,7 @@
       </div>
     </details>
 
+    <!--メモ表示-->
     <details class="pb-3">
       <summary class="memo-title mb-5 rounded-lg text-center"><b>メモ</b></summary>
       <div class="row mb-5">

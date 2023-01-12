@@ -1,14 +1,13 @@
 <div class="col-9 mx-auto memo-background p-5 rounded-lg">
   <% note.note_comments.each do |comment| %>
+    <!--コメントステータスがメモかつ、現在のユーザーとページのユーザーが同じなら-->
     <% if (comment.post_status == "memo") && (current_customer == comment.customer) %>
       <div class="rounded-lg p-3 bg-white memo">
         <%= safe_join(comment.comment.split("\n"), tag(:br)) %>
       </div>
-      <% if current_customer == comment.customer %>
-        <div class="text-right  mb-3">
-          <%= link_to "削除", note_note_comment_path(comment.note,comment),method: :delete ,class: "text-dark" , remote: true %>
-        </div>
-      <% end %>
+      <div class="text-right  mb-3">
+        <%= link_to "削除", note_note_comment_path(comment.note,comment),method: :delete ,class: "text-dark" , remote: true %>
+      </div>
     <% end %>
   <% end %>
 </div>

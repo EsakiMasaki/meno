@@ -1,3 +1,4 @@
+<!--エラーがあれば-->
 <% if customer.errors.any? %>
   <ul class="pl-0">
     <% customer.errors.full_messages_for(attribute).each do |message| %>

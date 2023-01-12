@@ -2,7 +2,8 @@
   <div class="row mb-5">
     <h1 class="mx-auto"><%= "#{@customer.name}さんの会員ステータス編集" %></h1>
   </div>
-
+  
+  <!--会員ステータス編集フォーム-->
   <%= form_with model: @customer, url: admin_customer_path(@customer), method: :patch do |f| %>
     <div class="row my-5">
       <div class="col-12 text-center">

@@ -3,6 +3,7 @@
     <h1><%= @customer.name %>さんのフォロワー一覧</h1>
   </div>
   <div class="row mb-5">
+    <!--フォロワーが一人でもいれば-->
     <% if @customers.count != 0 %>
       <table class="table border">
         <tr>

@@ -3,6 +3,7 @@
     <h1>お気に入り一覧</h1>
   </div>
   <div class="row mb-5">
+    <!--いいね数が1以上なら-->
     <% if @favorites.count != 0 %>
       <table class="table border">
         <tr>
@@ -15,6 +16,7 @@
           <tr>
             <td><%= link_to favorite.note.title , note_path(favorite.note), class: "text-dark" %></td>
             <td>
+              <!--カテゴリーがあれば-->
               <% if favorite.note.category_id != nil %>
                 <%= link_to favorite.note.category.name, category_path(favorite.note.category), class: "text-dark" %>
               <% end %>

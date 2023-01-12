@@ -8,12 +8,14 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarNavDropdown">
       <ul class="navbar-nav ml-auto my-3">
+        <!--顧客ログインしていたら-->
         <% if customer_signed_in? %>
           <li class="nav-item"><%= link_to "ランキング", root_path ,class: "text-white ml-3" %></li>
           <li class="nav-item"><%= link_to "マイページ", customer_path(current_customer) ,class: "text-white ml-3" %></li>
           <li class="nav-item"><%= link_to "マイノート", notes_path ,class: "text-white ml-3" %></li>
           <li class="nav-item"><%= link_to "ノート作成", new_note_path ,class: "text-white ml-3" %></li>
           <li class="nav-item"><%= link_to "ログアウト",destroy_customer_session_path ,method: :delete ,class: "text-white ml-3" %></li>
+        <!--管理者ログインしていたら-->
         <% elsif admin_signed_in? %>
           <li class="nav-item"><%= link_to "ホーム", admin_root_path ,class: "text-white ml-3" %></li>
           <li class="nav-item"><%= link_to "ログアウト",destroy_admin_session_path ,method: :delete ,class: "text-white ml-3" %></li>

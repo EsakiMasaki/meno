@@ -13,16 +13,20 @@
 
   <body class="bg-light">
 
+    <!--ヘッダー-->
     <header class="bg-dark shadow-sm">
       <%= render "layouts/header" %>
     </header>
 
+    <!--メイン-->
     <main class="min-vh-100">
+      <!--フラッシュメッセージ-->
       <%= render "layouts/flash_messages" %>
 
       <%= yield %>
     </main>
 
+    <!--フッター-->
     <footer class="bg-dark">
       <%= render "layouts/footer" %>
     </footer>

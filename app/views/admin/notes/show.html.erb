@@ -9,11 +9,13 @@
   <div class="row mt-5">
     <div class="col-12">
       <h1 class="font-weight-bold h-title"><%= @note.title %></h1>
+      <!--ノートにカテゴリー指定されていれば-->
       <% if @note.category_id != nil %>
         <p class="text"><i class="fa-solid fa-tag"></i> <%= @note.category.name %></p>
       <% end %>
       <h3 class="h-frame">できるようになること</h3>
       <p class="text"><%= safe_join(@note.can.split("\n"),tag(:br)) %></p>
+      <!--必要なものにデータがあれば-->
       <% if @note.necessities != "" %>
         <h3 class="h-frame">必要なもの</h3>
         <p class="text"><%= safe_join(@note.necessities.split("\n"),tag(:br)) %></p>
@@ -29,6 +31,7 @@
       <% @note.note_procedures.each do |procedure| %>
         <% num += 1 %>
         <h4 class="h-double" id="procedure-<%= num %>"><%= "#{num}. #{procedure.procedure}" %></h4>
+        <!--手順説明画像があれば-->
         <% if procedure.procedure_image.attached? %>
           <p class="text-center text"><%= image_tag procedure.get_procedure_image(700,500) %></p>
         <% end %>
@@ -47,6 +50,7 @@
   </div>
 </div>
 
+<!--管理者がログインしていれば-->
 <% if admin_signed_in? %>
   <div class="container bg-white rounded-lg my-5 py-5">
     <details class="my-3">

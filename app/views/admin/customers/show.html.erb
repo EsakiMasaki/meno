@@ -4,6 +4,7 @@
       <h1><%= image_tag @customer.get_profile_image(50,50),class: "rounded-circle mb-2 mr-2" %><%= @customer.name %></h1>
     </div>
     <div class="col-5 text-right">
+      <!--顧客が退会しているかどうかで条件分岐-->
       <% if @customer.is_deleted == false %>
         <span>会員ステータス: <b class="text-success">有効</b></span>
       <% else %>
@@ -11,6 +12,7 @@
       <% end %>
     </div>
   </div>
+  <!--プロフィールがあるか無いかで条件分岐-->
   <% if @customer.introduction != nil %>
     <div class="row">
       <div class="col-5">
@@ -29,6 +31,7 @@
         </summary>
 
         <% category.notes.order(:title).each do |note| %>
+          <!--ノートの公開ステータスが公開、または現在のユーザーとページのユーザーが同じなら-->
           <% if (note.publish_status == "publish") || (current_customer == @customer) %>
             <p class="pl-3 mt-3"><i class="fa-regular fa-file"></i> <%= link_to note.title , admin_note_path(note),class: "text-dark" %></p>
           <% end %>

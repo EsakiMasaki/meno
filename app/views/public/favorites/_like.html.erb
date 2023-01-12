@@ -1,9 +1,10 @@
+<!--いいねしているか確認-->
 <% if note.favorited_by?(current_customer) %>
   <%= link_to note_favorites_path(note),method: :delete,class: "text-dark" , remote: true do %>
-    ❤️<%= note.favorites.count %>
+    <i class="fa-solid fa-heart text-danger"></i>️<%= note.favorites.count %>
   <% end %>
 <% else %>
   <%= link_to note_favorites_path(note),method: :post,class: "text-dark" , remote: true do %>
-    🤍<%= note.favorites.count %>
+    <i class="fa-regular fa-heart"></i><%= note.favorites.count %>
   <% end %>
 <% end %>

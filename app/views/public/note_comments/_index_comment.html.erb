@@ -1,6 +1,8 @@
 <div class="col-9 mx-auto comment-background p-5 rounded-lg">
   <% note.note_comments.each do |comment| %>
+    <!--コメントステータスがコメントなら-->
     <% if comment.post_status == "comment" %>
+      <!--現在のユーザーとページのユーザーが同じなら-->
       <% if current_customer == comment.customer %>
         <div class="row mb-1">
           <div class="offset-2 col-8 my-comment">

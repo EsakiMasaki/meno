@@ -1,6 +1,8 @@
 <div class="col-9 mx-auto comment-background p-5 rounded-lg">
   <% note.note_comments.each do |comment| %>
+    <!--コメントステータスがコメントであるなら-->
     <% if comment.post_status == "comment" %>
+      <!--管理者がログインしているなら-->
       <% if admin_signed_in? %>
         <div class="row mb-4">
           <div class="col-2">
