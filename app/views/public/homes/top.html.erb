@@ -1,17 +1,17 @@
 <div class="container my-5 bg-white p-5 rounded-lg">
   <div class="row mb-5">
-    <div class="col-7">
+    <div class="col-md-7 col-sm-12">
       <h1>ランキング</h1>
     </div>
 
-    <div class="col-5">
+    <div class="col-md-5 col-sm-12 text-md-right">
       <%= render "public/searches/search" %>
     </div>
   </div>
 
 
   <table class="table border">
-    <tr>
+    <tr class="thead">
       <th class="bg-dark text-white"></th>
       <th class="bg-dark text-white">作成者</th>
       <th class="bg-dark text-white">タイトル</th>
@@ -29,14 +29,14 @@
           <td>
             <b><%= "#{num}位" %></b>
           </td>
-          <td>
+          <td data-label="作成者">
             <%= link_to customer_path(note.customer) ,class: "text-dark" do %>
               <%= image_tag note.customer.get_profile_image(25,25) , class: "rounded-circle mb-1" %>
               <%= note.customer.name %>
             <% end %>
           </td>
-          <td><%= link_to note.title , note_path(note) , class: "text-dark" %></td>
-          <td>
+          <td data-label="タイトル"><%= link_to note.title , note_path(note) , class: "text-dark" %></td>
+          <td data-label="カテゴリー">
             <!--カテゴリーがあれば-->
             <% if note.category_id != nil %>
               <%= link_to note.category.name, category_path(note.category), class: "text-dark" %>
@@ -44,15 +44,15 @@
           </td>
           <!--ログインしていれば-->
           <% if customer_signed_in? %>
-            <td class="favorite-<%= note.id %>"><%= render "public/favorites/like", note: note %></td>
+            <td class="favorite-<%= note.id %>" data-label="いいね数"><%= render "public/favorites/like", note: note %></td>
           <% else %>
-            <td>
+            <td data-label="">
               <%= link_to new_customer_session_path, class: "text-dark" do %>
                 <i class="fa-regular fa-heart"></i><%= note.favorites.count %>
               <% end %>
             </td>
           <% end %>
-          <td><%= link_to "見る", note_path(note),class: "btn btn-primary" %></td>
+          <td data-label=""><%= link_to "見る", note_path(note),class: "btn btn-primary" %></td>
         </tr>
 
         <!--100位まで表示する-->

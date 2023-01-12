@@ -1,6 +1,6 @@
 <!--検索フォーム-->
 <%= form_with url: search_path, method: :get do |f| %>
-  <%= f.text_field :word %>
+  <%= f.text_field :word, size: 18 %>
   <!--urlにcustomerが含まれていれば-->
   <% if request.url.include?("customer") %>
     <%= f.submit "検索", name: "customer_search" %>
