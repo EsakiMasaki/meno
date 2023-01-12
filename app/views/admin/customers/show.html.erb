@@ -5,9 +5,9 @@
     </div>
     <div class="col-5 text-right">
       <% if @customer.is_deleted == false %>
-        <span>会員ステータス: 有効</span>
+        <span>会員ステータス: <b class="text-success">有効</b></span>
       <% else %>
-        <span>会員ステータス: 退会</span>
+        <span>会員ステータス: <b class="text-danger">退会</b></span>
       <% end %>
     </div>
   </div>

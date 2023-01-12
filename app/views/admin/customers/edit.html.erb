@@ -1,13 +1,13 @@
 <div class="container my-5 bg-white p-5 rounded-lg">
   <div class="row mb-5">
-    <h1><%= "#{@customer.name}さんの会員ステータス編集" %></h1>
+    <h1 class="mx-auto"><%= "#{@customer.name}さんの会員ステータス編集" %></h1>
   </div>
 
   <%= form_with model: @customer, url: admin_customer_path(@customer), method: :patch do |f| %>
     <div class="row my-5">
       <div class="col-12 text-center">
-        <%= f.radio_button :is_deleted, :false %><b class="mr-3">有効</b>
-        <%= f.radio_button :is_deleted, :true %><b>退会</b>
+        <%= f.radio_button :is_deleted, :false %><b class="mr-3 text-success">有効</b>
+        <%= f.radio_button :is_deleted, :true %><b class="text-danger">退会</b>
       </div>
     </div>
     <div class="row mt-4">

@@ -1,4 +1,6 @@
 class Admin::NotesController < ApplicationController
+  before_action :admin_match?
+
   def show
     @comment = NoteComment.new
     @comments = NoteComment.all
