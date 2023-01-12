@@ -17,7 +17,7 @@ class Public::NotesController < ApplicationController
   end
 
   def index
-    @notes = current_customer.notes.all.order(created_at: :desc)
+    @notes = current_customer.notes.page(params[:page]).order(created_at: :desc)
     @notes.each do |note|
       unless Category.exists?(id: note.category_id)
         note.category_id = nil
