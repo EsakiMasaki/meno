@@ -1,9 +1,11 @@
 class Public::NotesController < ApplicationController
   before_action :authenticate_customer!, except: [:top,:about,:show,:search]
+  # url直接入力対策
   before_action :current_customer_match?, only: [:edit,:update,:destroy]
 
   def new
     @note = Note.new
+    # buildで子モデルのインスタンス作成
     @procedures = @note.note_procedures.build
   end
 
@@ -20,6 +22,7 @@ class Public::NotesController < ApplicationController
   def index
     @notes = current_customer.notes.page(params[:page]).order(created_at: :desc)
     @notes.each do |note|
+      # ノートに存在しないカテゴリーidがあれば、カテゴリーidをnilにする
       unless Category.exists?(id: note.category_id)
         note.category_id = nil
       end
@@ -30,6 +33,7 @@ class Public::NotesController < ApplicationController
     @comment = NoteComment.new
     @comments = NoteComment.all
     @note = Note.find(params[:id])
+    # ノートに存在しないカテゴリーidがあれば、カテゴリーidをnilにする
     unless Category.exists?(id: @note.category_id)
       @note.category_id = nil
     end
@@ -61,10 +65,12 @@ class Public::NotesController < ApplicationController
 
   private
 
+  # ストロングパラメータに子モデルのパラメータも入れる
   def note_params
     params.require(:note).permit(:title,:can,:necessities,:conclude,:category_id,:publish_status,note_procedures_attributes: [:id,:procedure,:explanation,:procedure_image,:_destroy])
   end
 
+  # url直接入力対策
   def current_customer_match?
     note = Note.find(params[:id])
     unless current_customer == note.customer

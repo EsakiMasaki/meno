@@ -25,11 +25,13 @@ class Admin::SessionsController < Devise::SessionsController
   #   devise_parameter_sanitizer.permit(:sign_in, keys: [:attribute])
   # end
 
+  # 管理者ログイン時の遷移ページ
   def after_sign_in_path_for(resource)
     flash[:notice] = "管理者側でログインしました"
     admin_root_path
   end
 
+  # 管理者ログアウト時の遷移ページ
   def after_sign_out_path_for(resource)
     flash[:notice] = "管理者側でログアウトしました"
     new_admin_session_path

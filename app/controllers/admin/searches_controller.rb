@@ -1,4 +1,5 @@
 class Admin::SearchesController < ApplicationController
+  # 管理者ログインしているなら
   before_action :admin_match?
 
   def search

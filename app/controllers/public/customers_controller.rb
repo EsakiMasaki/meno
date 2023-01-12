@@ -1,5 +1,6 @@
 class Public::CustomersController < ApplicationController
   before_action :authenticate_customer!, except: [:top,:about,:show,:search]
+  # url直接入力対策
   before_action :current_customer_match?, only: [:edit,:update]
 
   def index
@@ -31,7 +32,8 @@ class Public::CustomersController < ApplicationController
   def customer_params
     params.require(:customer).permit(:name,:introduction,:profile_image)
   end
-
+  
+  # url直接入力対策
   def current_customer_match?
     customer = Customer.find(params[:id])
     unless current_customer == customer

@@ -1,4 +1,5 @@
 class Admin::CustomersController < ApplicationController
+  # 管理者ログインしているなら
   before_action :admin_match?
 
   def show

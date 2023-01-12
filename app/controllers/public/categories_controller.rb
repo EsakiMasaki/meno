@@ -1,5 +1,6 @@
 class Public::CategoriesController < ApplicationController
   before_action :authenticate_customer!, except: [:top,:about,:show,:search]
+  # url直接入力対策
   before_action :current_customer_match?, only: [:edit,:update,:destrooy]
 
   def show
@@ -37,7 +38,8 @@ class Public::CategoriesController < ApplicationController
   def category_params
     params.require(:category).permit(:name)
   end
-
+  
+  # url直接入力対策
   def current_customer_match?
     category = Category.find(params[:id])
     unless current_customer == category.customer
