@@ -3,7 +3,7 @@ class Admin::SearchesController < ApplicationController
 
   def search
     @word = params[:word]
-    @customers = Customer.looks(@word)
+    @customers = Customer.looks(@word).page(params[:page])
     render "/admin/searches/customer_search_index"
   end
 end

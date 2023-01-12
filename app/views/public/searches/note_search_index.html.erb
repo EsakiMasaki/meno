@@ -22,33 +22,34 @@
           <th class="bg-dark text-white"></th>
         </tr>
         <% @notes.each do |note| %>
-          <% if note.publish_status == "publish" %>
-            <tr>
-              <td>
-                <%= link_to customer_path(note.customer) ,class: "text-dark" do %>
-                  <%= image_tag note.customer.get_profile_image(25,25) , class: "rounded-circle" %>
-                  <%= note.customer.name %>
-                <% end %>
-              </td>
-              <td><%= link_to note.title , note_path(note) , class: "text-dark" %></td>
-              <td>
-                <% if note.category_id != nil %>
-                  <%= link_to note.category.name, category_path(note.category), class: "text-dark" %>
-                <% end %>
-              </td>
-              <% if customer_signed_in? %>
-                <td class="favorite-<%= note.id %>"><%= render "public/favorites/like", note: note %></td>
-              <% else %>
-                <td><%= note.favorites.count %></td>
+          <tr>
+            <td>
+              <%= link_to customer_path(note.customer) ,class: "text-dark" do %>
+                <%= image_tag note.customer.get_profile_image(25,25) , class: "rounded-circle" %>
+                <%= note.customer.name %>
               <% end %>
-              <td><%= link_to "見る", note_path(note),class: "btn btn-primary" %></td>
-            </tr>
-          <% end %>
+            </td>
+            <td><%= link_to note.title , note_path(note) , class: "text-dark" %></td>
+            <td>
+              <% if note.category_id != nil %>
+                <%= link_to note.category.name, category_path(note.category), class: "text-dark" %>
+              <% end %>
+            </td>
+            <% if customer_signed_in? %>
+              <td class="favorite-<%= note.id %>"><%= render "public/favorites/like", note: note %></td>
+            <% else %>
+              <td><%= note.favorites.count %></td>
+            <% end %>
+            <td><%= link_to "見る", note_path(note),class: "btn btn-primary" %></td>
+          </tr>
         <% end %>
       </table>
       <% else %>
         <p>見つかりませんでした</p>
       <% end %>
+    </div>
+    <div class="mx-auto">
+      <%= paginate @notes %>
     </div>
   </div>
 
@@ -65,37 +66,36 @@
               <th class="bg-dark text-white">いいね数</th>
               <th class="bg-dark text-white"></th>
             </tr>
-            <% @categories.each do |category| %>
-              <% category.notes.each do |note| %>
-                <% if note.publish_status == "publish" %>
-                  <tr>
-                    <td>
-                      <%= link_to customer_path(note.customer) ,class: "text-dark" do %>
-                        <%= image_tag note.customer.get_profile_image(25,25) , class: "rounded-circle" %>
-                        <%= note.customer.name %>
-                      <% end %>
-                    </td>
-                    <td><%= link_to note.title , note_path(note) , class: "text-dark" %></td>
-                    <td>
-                      <% if note.category_id != nil %>
-                        <%= link_to note.category.name, category_path(note.category), class: "text-dark" %>
-                      <% end %>
-                    </td>
-                    <% if customer_signed_in? %>
-                      <td class="favorite-<%= note.id %>"><%= render "public/favorites/like", note: note %></td>
-                    <% else %>
-                      <td><%= note.favorites.count %></td>
-                    <% end %>
-                    <td><%= link_to "見る", note_path(note),class: "btn btn-primary" %></td>
-                  </tr>
+            <% @categories.each do |note| %>
+              <tr>
+                <td>
+                  <%= link_to customer_path(note.customer) ,class: "text-dark" do %>
+                    <%= image_tag note.customer.get_profile_image(25,25) , class: "rounded-circle" %>
+                    <%= note.customer.name %>
+                  <% end %>
+                </td>
+                <td><%= link_to note.title , note_path(note) , class: "text-dark" %></td>
+                <td>
+                  <% if note.category_id != nil %>
+                    <%= link_to note.category.name, category_path(note.category), class: "text-dark" %>
+                  <% end %>
+                </td>
+                <% if customer_signed_in? %>
+                  <td class="favorite-<%= note.id %>"><%= render "public/favorites/like", note: note %></td>
+                <% else %>
+                  <td><%= note.favorites.count %></td>
                 <% end %>
-              <% end %>
+                <td><%= link_to "見る", note_path(note),class: "btn btn-primary" %></td>
+              </tr>
             <% end %>
           </table>
         <% else %>
           <p>見つかりませんでした</p>
         <% end %>
       <% end %>
+    </div>
+    <div class="mx-auto">
+      <%= paginate @categories %>
     </div>
   </div>
 </div>

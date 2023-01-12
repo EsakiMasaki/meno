@@ -25,9 +25,9 @@
           </td>
           <td>
             <% if customer.is_deleted == false %>
-              <span>有効</span>
+              <span class="text-success"><b>有効</b></span>
             <% else %>
-              <span>退会</span>
+              <span class="text-danger"><b>退会</b></span>
             <% end %>
           </td>
         </tr>
@@ -36,4 +36,5 @@
   <% else %>
     <p>見つかりませんでした</p>
   <% end %>
+  <%= paginate @customers %>
 </div>
