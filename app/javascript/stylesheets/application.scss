@@ -155,3 +155,25 @@
   margin: 0 auto;
   background-color: rgba(100,255,0,0.5);
 }
+
+// ページネーション
+.pagination {
+  margin-top: 5%;
+  justify-content: center;
+}
+
+.pagination li a {
+  margin: 0 5px;
+  padding: 10px 15px;
+  border: none;
+  color: #777;
+}
+
+.pagination .active a {
+  background: #9df;
+  border-radius: 15px;
+}
+
+.pagination li a:hover {
+  border-radius: 15px;
+}
