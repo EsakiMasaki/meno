@@ -1,9 +1,12 @@
 class NoteProcedure < ApplicationRecord
+  # アソシエーション
   belongs_to :note
 
+  # バリデーション
   validates :procedure ,presence: true
   validates :explanation ,presence: true
 
+  # 手順説明画像(サイズ指定)
   has_one_attached :procedure_image
 
   def get_procedure_image(width,height)

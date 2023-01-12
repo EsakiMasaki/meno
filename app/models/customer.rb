@@ -1,4 +1,5 @@
 class Customer < ApplicationRecord
+  # アソシエーション
   has_many :notes ,dependent: :destroy
   has_many :note_procedures ,dependent: :destroy
   has_many :note_comments ,dependent: :destroy
@@ -10,17 +11,21 @@ class Customer < ApplicationRecord
   has_many :reverse_of_relationships , class_name: "Relationship" , foreign_key: "followed_id" , dependent: :destroy
   has_many :followings , through: :relationships , source: :followed
   has_many :followers , through: :reverse_of_relationships , source: :follower
-
+  
+  # バリデーション
   validates :name, presence: true
 
+  # 顧客検索(部分一致)
   def self.looks(word)
     Customer.where("name LIKE?", "%#{word}%")
   end
 
+  # フォロー中であるかの確認
   def followings?(customer)
     followings.include?(customer)
   end
 
+  # プロフィール画像(サイズ指定)
   has_one_attached :profile_image
 
   def get_profile_image(width,height)

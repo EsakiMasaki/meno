@@ -6,6 +6,7 @@ Rails.application.routes.draw do
     sessions: "public/sessions"
   }
 
+  # scopeでurlに/publicをつけないようにする
   scope module: :public do
 
     root to: "homes#top"
@@ -34,6 +35,7 @@ Rails.application.routes.draw do
     sessions: "admin/sessions"
   }
 
+  # namespaceでurlに/adminをつける
   namespace :admin do
     root to: 'homes#top'
     get "search" => "searches#search"
