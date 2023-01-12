@@ -1,5 +1,6 @@
 class Public::CustomersController < ApplicationController
   before_action :authenticate_customer!, except: [:top,:about,:show,:search]
+  before_action :current_customer_match?, only: [:edit,:update]
 
   def index
     @customers = Customer.page(params[:page])
@@ -29,5 +30,12 @@ class Public::CustomersController < ApplicationController
 
   def customer_params
     params.require(:customer).permit(:name,:introduction,:profile_image)
+  end
+
+  def current_customer_match?
+    customer = Customer.find(params[:id])
+    unless current_customer == customer
+      redirect_to root_path
+    end
   end
 end

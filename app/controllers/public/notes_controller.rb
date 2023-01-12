@@ -1,5 +1,6 @@
 class Public::NotesController < ApplicationController
   before_action :authenticate_customer!, except: [:top,:about,:show,:search]
+  before_action :current_customer_match?, only: [:edit,:update,:destroy]
 
   def new
     @note = Note.new
@@ -62,5 +63,12 @@ class Public::NotesController < ApplicationController
 
   def note_params
     params.require(:note).permit(:title,:can,:necessities,:conclude,:category_id,:publish_status,note_procedures_attributes: [:id,:procedure,:explanation,:procedure_image,:_destroy])
+  end
+
+  def current_customer_match?
+    note = Note.find(params[:id])
+    unless current_customer == note.customer
+      redirect_to root_path
+    end
   end
 end
