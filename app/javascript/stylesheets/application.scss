@@ -258,4 +258,34 @@
     display: block;
   }
 
+  // コメント画像
+  .comment-image-size {
+    width: 40px;
+    height: 40px;
+  }
+
+  // コメントフォント
+  .comment-font-size {
+    font-size: 8px;
+  }
+
+  // 枠線(他の人のコメント)
+  .other-comment{
+    position: relative;
+    padding: 8px;
+    background-color: #fff;
+    border: 2px solid #000;
+    border-radius: 10px;
+    word-wrap: break-word;
+  }
+
+  // 枠線(自分のコメント)
+  .my-comment{
+    position: relative;
+    padding: 8px;
+    background-color: #fff;
+    border: 2px solid #000;
+    border-radius: 10px;
+    word-wrap: break-word;
+  }
 }
