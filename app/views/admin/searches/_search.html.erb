@@ -1,5 +1,5 @@
 <!--管理者側、顧客検索フォーム-->
 <%= form_with url: admin_search_path, method: :get do |f| %>
-  <%= f.text_field :word %>
+  <%= f.text_field :word, size: 18 %>
   <%= f.submit "検索", name: "customer_search" %>
 <% end %>

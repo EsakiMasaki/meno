@@ -16,14 +16,14 @@
         <% @notes.each do |note| %>
           <tr>
             <td></td>
-            <td data-label="タイトル"><%= link_to note.title , note_path(note) , class: "text-dark" %></td>
-            <td data-label="カテゴリー">
+            <td class="stick-out" data-label="タイトル"><%= link_to note.title , note_path(note) , class: "text-dark" %></td>
+            <td class="stick-out" data-label="カテゴリー">
               <!--カテゴリーがあれば-->
               <% if note.category_id != nil %>
                 <%= link_to note.category.name, category_path(note.category), class: "text-dark" %>
               <% end %>
             </td>
-            <td class="favorite-<%= note.id %>" data-label="いいね数"><%= render "public/favorites/like", note: note %></td>
+            <td class="stick-out" class="favorite-<%= note.id %>" data-label="いいね数"><%= render "public/favorites/like", note: note %></td>
             <td><%= link_to "見る", note_path(note),class: "btn btn-primary" %></td>
           </tr>
         <% end %>

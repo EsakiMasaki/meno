@@ -1,7 +1,7 @@
 <div class="container my-5 bg-white p-5 rounded-lg">
   <div class="row mb-5">
     <div class="col-md-7 col-sm-12">
-      <h1>検索ワード: <%= @word %></h1>
+      <h1 class="h1-font-size">検索ワード: <%= @word %></h1>
     </div>
 
     <div class="col-md-5 col-sm-12 text-md-right">
@@ -11,7 +11,7 @@
 
   <div class="row">
     <div class="col-12">
-      <h2>タイトル検索結果</h2>
+      <h2 class="h3-font-size">タイトル検索結果</h2>
       <!--ノートが一つでもあれば-->
       <% if @notes.count != 0 %>
       <table class="table border">
@@ -26,14 +26,14 @@
         <% @notes.each do |note| %>
           <tr>
             <td></td>
-            <td data-label="作成者">
+            <td class="stick-out" data-label="作成者">
               <%= link_to customer_path(note.customer) ,class: "text-dark" do %>
                 <%= image_tag note.customer.get_profile_image(25,25) , class: "rounded-circle" %>
                 <%= note.customer.name %>
               <% end %>
             </td>
-            <td data-label="タイトル"><%= link_to note.title , note_path(note) , class: "text-dark" %></td>
-            <td data-label="カテゴリー">
+            <td class="stick-out" data-label="タイトル"><%= link_to note.title , note_path(note) , class: "text-dark" %></td>
+            <td class="stick-out" data-label="カテゴリー">
               <!--カテゴリーがあれば-->
               <% if note.category_id != nil %>
                 <%= link_to note.category.name, category_path(note.category), class: "text-dark" %>
@@ -64,7 +64,7 @@
 
   <div class="row mt-5">
     <div class="col-12">
-      <h2>カテゴリー検索結果</h2>
+      <h2 class="h3-font-size">カテゴリー検索結果</h2>
       <!--urlにnoteが含まれていれば-->
       <% if request.url.include?("note") %>
         <!--カテゴリー数が0以外なら-->
@@ -81,14 +81,14 @@
             <% @categories.each do |note| %>
               <tr>
                 <td></td>
-                <td data-label="作成者">
+                <td class="stick-out" data-label="作成者">
                   <%= link_to customer_path(note.customer) ,class: "text-dark" do %>
                     <%= image_tag note.customer.get_profile_image(25,25) , class: "rounded-circle" %>
                     <%= note.customer.name %>
                   <% end %>
                 </td>
-                <td data-label="タイトル"><%= link_to note.title , note_path(note) , class: "text-dark" %></td>
-                <td data-label="カテゴリー">
+                <td class="stick-out" data-label="タイトル"><%= link_to note.title , note_path(note) , class: "text-dark" %></td>
+                <td class="stick-out" data-label="カテゴリー">
                   <!--カテゴリーがあれば-->
                   <% if note.category_id != nil %>
                     <%= link_to note.category.name, category_path(note.category), class: "text-dark" %>

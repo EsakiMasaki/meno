@@ -288,4 +288,24 @@
     border-radius: 10px;
     word-wrap: break-word;
   }
+
+  // フォントサイズ
+  .h1-font-size {
+    font-size: 28px;
+  }
+
+  .h2-font-size {
+    font-size: 26px;
+  }
+
+  .h3-font-size {
+    font-size: 24px;
+  }
+
+  // 文字はみ出し対策
+  .stick-out {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
 }

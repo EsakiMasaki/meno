@@ -1,7 +1,7 @@
 <div class="container my-5 bg-white p-5 rounded-lg">
   <div class="row mb-5">
     <div class="col-md-7 col-sm-12">
-      <h1>ランキング</h1>
+      <h1 class="h1-font-size">ランキング</h1>
     </div>
 
     <div class="col-md-5 col-sm-12 text-md-right">
@@ -29,14 +29,14 @@
           <td>
             <b><%= "#{num}位" %></b>
           </td>
-          <td data-label="作成者">
+          <td class="stick-out" data-label="作成者">
             <%= link_to customer_path(note.customer) ,class: "text-dark" do %>
               <%= image_tag note.customer.get_profile_image(25,25) , class: "rounded-circle mb-1" %>
               <%= note.customer.name %>
             <% end %>
           </td>
-          <td data-label="タイトル"><%= link_to note.title , note_path(note) , class: "text-dark" %></td>
-          <td data-label="カテゴリー">
+          <td class="stick-out" data-label="タイトル"><%= link_to note.title , note_path(note) , class: "text-dark" %></td>
+          <td class="stick-out" data-label="カテゴリー">
             <!--カテゴリーがあれば-->
             <% if note.category_id != nil %>
               <%= link_to note.category.name, category_path(note.category), class: "text-dark" %>

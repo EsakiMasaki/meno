@@ -1,13 +1,13 @@
-<div class="col-9 mx-auto comment-background p-5 rounded-lg">
+<div class="col-9 mx-auto comment-background p-3 p-md-5 rounded-lg">
   <% note.note_comments.each do |comment| %>
     <!--コメントステータスがコメントであるなら-->
     <% if comment.post_status == "comment" %>
       <!--管理者がログインしているなら-->
       <% if admin_signed_in? %>
-        <div class="row mb-4">
-          <div class="col-2">
-            <%= link_to customer_path(comment.customer), class: "text-dark" do %>
-              <%= image_tag comment.customer.get_profile_image(50,50), class: "rounded-circle" %><br>
+        <div class="row pr-1 pr-md-0">
+          <div class="col-4 col-lg-2 text-center">
+            <%= link_to customer_path(comment.customer), class: "text-dark comment-font-size" do %>
+              <%= image_tag comment.customer.get_profile_image(50,50), class: "rounded-circle comment-image-size" %><br>
               <%= comment.customer.name %>
             <% end %>
           </div>
@@ -16,7 +16,7 @@
           </div>
         </div>
         <div class="row">
-          <div class="offset-9 text-right mb-4">
+          <div class="offset-10 offset-md-10 offset-lg-9 text-right mb-4">
             <%= link_to "削除", admin_note_note_comment_path(comment.note,comment),method: :delete , class: "text-dark", remote: true , "data-confirm" => "本当に削除しますか？" %>
           </div>
         </div>
