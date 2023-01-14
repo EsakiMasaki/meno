@@ -79,7 +79,7 @@
   <div class="container bg-white rounded-lg my-5">
     <div class="row">
       <div class="col-12 my-5">
-        <h2 class="ml-5">
+        <h2 class="mx-3 mx-md-5">
           <%= link_to customer_path(@note.customer) ,class: "text-dark" do %>
             <%= image_tag @note.customer.get_profile_image(40,40) , class: "rounded-circle mb-2" %>
             <%= @note.customer.name %>
@@ -88,7 +88,7 @@
         <div class="ml-5">
           <!--プロフィールがあれば-->
           <% if @note.customer.introduction != nil %>
-            <p class="my-5 ml-5">
+            <p class="my-3 mx-1 m-md-5">
               <%= safe_join(@note.customer.introduction.split("\n"), tag(:br)) %>
             </p>
           <% end %>

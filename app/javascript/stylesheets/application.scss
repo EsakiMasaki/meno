@@ -184,6 +184,19 @@
   border-radius: 15px;
 }
 
+// テーブル
+table {
+  width: 100%;
+  table-layout: fixed
+}
+
+// 文字はみ出し対策
+.stick-out {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
 // レスポンシブ対応
 @media screen and (max-width: 767px){
   // テーブルのレスポンシブ対応
@@ -300,12 +313,5 @@
 
   .h3-font-size {
     font-size: 24px;
-  }
-
-  // 文字はみ出し対策
-  .stick-out {
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
   }
 }

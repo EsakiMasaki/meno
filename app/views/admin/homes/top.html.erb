@@ -11,10 +11,10 @@
 
   <table class="table border">
     <tr class="thead">
-      <th class="bg-dark text-white"></th>
+      <th class="bg-dark text-white" style="width: 0px;"></th>
       <th class="bg-dark text-white">ユーザー名</th>
       <th class="bg-dark text-white">会員ステータス</th>
-      <th class="bg-dark text-white"></th>
+      <th class="bg-dark text-white" style="width: 0px;"></th>
     </tr>
     <% @customers.each do |customer| %>
       <tr>
@@ -33,7 +33,7 @@
             <span class="text-danger"><b>退会</b></span>
           <% end %>
         </td>
-        <td class="m-0 p-0"></td>
+        <td class="m-0 p-0" style="width: 0px;"></td>
       </tr>
     <% end %>
   </table>
