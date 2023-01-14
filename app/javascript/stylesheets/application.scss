@@ -197,6 +197,13 @@ table {
   white-space: nowrap;
 }
 
+// カテゴリー選択バーサイズ
+#note_category_id {
+  width: 70%;
+}
+
+
+
 // レスポンシブ対応
 @media screen and (max-width: 767px){
   // テーブルのレスポンシブ対応
@@ -313,5 +320,10 @@ table {
 
   .h3-font-size {
     font-size: 24px;
+  }
+
+  // カテゴリー選択バーサイズ
+  #note_category_id {
+    width: 100%;
   }
 }
