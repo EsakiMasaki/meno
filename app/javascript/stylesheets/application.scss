@@ -6,6 +6,7 @@
 // ノート投稿フォーム
 .h-title {
   margin: 0 1.5em;
+  word-wrap: break-word;
 }
 
 .h-frame {
@@ -20,10 +21,12 @@
   margin: 2em 2.5em 1em;
   padding: 0.3em 0.6em;
   border-left: solid 5px #ffdd00;
+  word-wrap: break-word;
 }
 
 .text {
   margin: 1em 4em 0;
+  word-wrap: break-word;
 }
 
 //コメントとメモ
@@ -58,6 +61,7 @@
   background-color: #fff;
   border: 2px solid #000;
   border-radius: 10px;
+  word-wrap: break-word;
 }
 
 .other-comment::before{
@@ -93,6 +97,7 @@
   background-color: #fff;
   border: 2px solid #000;
   border-radius: 10px;
+  word-wrap: break-word;
 }
 
 .my-comment::before{
@@ -124,6 +129,7 @@
 // メモ枠線
 .memo {
   border: 2px solid #000;
+  word-wrap: break-word;
 }
 
 
@@ -221,6 +227,8 @@
   .h-title {
     width: 100%;
     margin: 0 0.1em;
+    word-wrap: break-word;
+    font-size: 28px;
   }
 
   .h-frame {
@@ -229,20 +237,25 @@
     background-color: #f4f4f4;
     border-left: solid 5px #eecc00;
     border-bottom: solid 3px #d7d7d7;
+    font-size: 24px;
   }
 
   .h-double {
     margin: 2em 0 1em;
     padding: 0.3em 0.6em;
     border-left: solid 5px #ffdd00;
+    word-wrap: break-word;
+    font-size: 20px;
   }
 
   .text {
     margin: 1em 1em 0;
+    word-wrap: break-word;
   }
 
   // ブロック要素化
   .block {
     display: block;
   }
+
 }
