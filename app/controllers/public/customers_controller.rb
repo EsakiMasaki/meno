@@ -8,6 +8,7 @@ class Public::CustomersController < ApplicationController
   end
 
   def show
+    @notes = Note.all
     @customer = Customer.find(params[:id])
     @category = @customer.categories.new
     @categories = @customer.categories.all.order(:name)
@@ -32,7 +33,7 @@ class Public::CustomersController < ApplicationController
   def customer_params
     params.require(:customer).permit(:name,:introduction,:profile_image)
   end
-  
+
   # url直接入力対策
   def current_customer_match?
     customer = Customer.find(params[:id])

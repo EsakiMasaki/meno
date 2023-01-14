@@ -30,6 +30,7 @@ class Public::CategoriesController < ApplicationController
   def destroy
     category = current_customer.categories.find(params[:id])
     category.destroy
+    flash[:notice] = "カテゴリー名を削除しました"
     redirect_to customer_path(current_customer)
   end
 
@@ -38,7 +39,7 @@ class Public::CategoriesController < ApplicationController
   def category_params
     params.require(:category).permit(:name)
   end
-  
+
   # url直接入力対策
   def current_customer_match?
     category = Category.find(params[:id])

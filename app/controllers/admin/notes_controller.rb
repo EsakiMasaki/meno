@@ -15,6 +15,7 @@ class Admin::NotesController < ApplicationController
   def destroy
     note = Note.find(params[:id])
     note.destroy
+    flash[:notice] = "#{note.customer.name}さんの\nノートを削除しました"
     redirect_to admin_customer_path(note.customer)
   end
 end

@@ -3,6 +3,7 @@ class Admin::CustomersController < ApplicationController
   before_action :admin_match?
 
   def show
+    @notes = Note.all
     @customer = Customer.find(params[:id])
     @categories = @customer.categories.all.order(:name)
   end
@@ -14,7 +15,7 @@ class Admin::CustomersController < ApplicationController
   def update
     @customer = Customer.find(params[:id])
     if @customer.update(customer_params)
-      flash[:notice] = "#{@customer.name}の会員ステータスを編集しました"
+      flash[:notice] = "#{@customer.name}の会員ステータスを\n編集しました"
       redirect_to admin_customer_path(@customer)
     else
       render :edit
