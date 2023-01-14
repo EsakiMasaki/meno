@@ -1,6 +1,6 @@
 <div class="container my-5 bg-white p-5 rounded-lg">
   <div class="row mb-5">
-    <h1><%= @customer.name %>さんのフォロー一覧</h1>
+    <h1 class="h1-font-size"><span class="block"><%= @customer.name %>さんの</span>フォロー一覧</h1>
   </div>
   <div class="row mb-5">
     <!--フォローした人が一人でもいれば-->
@@ -16,18 +16,18 @@
         <% @customers.each do |customer| %>
           <tr>
             <td></td>
-            <td data-label="ユーザー名">
+            <td class="stick-out" data-label="ユーザー名">
               <%= link_to customer_path(customer) , class: "text-dark" do %>
                 <%= image_tag customer.get_profile_image(25,25), class: "rounded-circle" %>
                 <%= customer.name %>
               <% end %>
             </td>
-            <td data-label="フォロー数">
+            <td class="stick-out" data-label="フォロー数">
               <%= link_to customer_followings_path(customer),class: "text-dark" do %>
                 フォロー数: <%= customer.followings.count %>
               <% end %>
             </td>
-            <td data-label="フォロワー数">
+            <td class="stick-out" data-label="フォロワー数">
               <%= link_to customer_followers_path(customer),class: "text-dark" do %>
                 フォロワー数:<%= customer.followers.count %>
               <% end %>
