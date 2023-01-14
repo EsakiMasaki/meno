@@ -6,7 +6,8 @@
     <!--いいね数が1以上なら-->
     <% if @favorites.count != 0 %>
       <table class="table border">
-        <tr>
+        <tr class="thead">
+          <th class="bg-dark text-white"></th>
           <th class="bg-dark text-white">タイトル</th>
           <th class="bg-dark text-white">カテゴリー</th>
           <th class="bg-dark text-white">いいね数</th>
@@ -14,14 +15,15 @@
         </tr>
         <% @favorites.each do |favorite| %>
           <tr>
-            <td><%= link_to favorite.note.title , note_path(favorite.note), class: "text-dark" %></td>
-            <td>
+            <td></td>
+            <td data-label="タイトル"><%= link_to favorite.note.title , note_path(favorite.note), class: "text-dark" %></td>
+            <td data-label="カテゴリー">
               <!--カテゴリーがあれば-->
               <% if favorite.note.category_id != nil %>
                 <%= link_to favorite.note.category.name, category_path(favorite.note.category), class: "text-dark" %>
               <% end %>
             </td>
-            <td class="favorite-<%= favorite.note.id %>"><%= render "public/favorites/like", note: favorite.note %></td>
+            <td class="favorite-<%= favorite.note.id %>" data-label="いいね数"><%= render "public/favorites/like", note: favorite.note %></td>
             <td><%= link_to "見る", note_path(favorite.note),class: "btn btn-primary" %></td>
           </tr>
         <% end %>

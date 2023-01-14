@@ -6,7 +6,8 @@
     <!--フォロワーが一人でもいれば-->
     <% if @customers.count != 0 %>
       <table class="table border">
-        <tr>
+        <tr class="thead">
+          <th class="bg-dark text-white"></th>
           <th class="bg-dark text-white">ユーザー名</th>
           <th class="bg-dark text-white">フォロー数</th>
           <th class="bg-dark text-white">フォロワー数</th>
@@ -14,18 +15,19 @@
         </tr>
         <% @customers.each do |customer| %>
           <tr>
-            <td>
+            <td></td>
+            <td data-label="ユーザー名">
               <%= link_to customer_path(customer) , class: "text-dark" do %>
                 <%= image_tag customer.get_profile_image(25,25), class: "rounded-circle" %>
                 <%= customer.name %>
               <% end %>
             </td>
-            <td>
+            <td data-label="フォロー数">
               <%= link_to customer_followings_path(customer),class: "text-dark" do %>
                 フォロー数: <%= customer.followings.count %>
               <% end %>
             </td>
-            <td>
+            <td data-label="フォロワー数">
               <%= link_to customer_followers_path(customer),class: "text-dark" do %>
                 フォロワー数:<%= customer.followers.count %>
               <% end %>

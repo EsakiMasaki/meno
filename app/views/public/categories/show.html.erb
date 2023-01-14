@@ -1,9 +1,9 @@
 <div class="container my-5 bg-white p-5 rounded-lg">
   <div class="row">
-    <div class="col-8">
+    <div class="col-sm-12 col-md-8">
       <h2><%= @category.name %></h2>
     </div>
-    <div class="col-4">
+    <div class="col-sm-12 col-md-4 text-md-right">
       <!--現在のユーザーとページのユーザーが同じなら-->
       <% if current_customer == @category.customer %>
         <%= link_to "編集", edit_category_path(@category) , class: "btn btn-sm btn-success" %>

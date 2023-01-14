@@ -1,32 +1,32 @@
 <div class="container my-5 bg-white p-5 rounded-lg">
   <div class="row">
-    <div class="col-7">
+    <div class="col-lg-8 col-md-6 col-sm-12">
       <h1><%= image_tag @customer.get_profile_image(50,50),class: "rounded-circle mb-2 mr-2" %><%= @customer.name %></h1>
     </div>
-    <div class="col-5">
+    <div class="col-lg-4 col-md-6 col-sm-12 text-md-right">
       <!--ログインしているなら-->
       <% if customer_signed_in? %>
-        <%= link_to "ユーザー一覧" , customers_path ,class: "btn btn-primary" %>
+        <%= link_to "ユーザー一覧" , customers_path ,class: "btn btn-sm btn-primary btn-size" %>
 
         <!--現在のユーザーとページのユーザーが違うなら-->
         <% if @customer != current_customer %>
           <!--フォローしているか確認-->
           <% if current_customer.followings?(@customer) %>
-            <%= link_to "フォローを外す" , customer_relationships_path(@customer) , method: :delete, class: "btn btn-danger" %>
+            <%= link_to "フォローを外す" , customer_relationships_path(@customer) , method: :delete, class: "btn btn-sm btn-danger btn-size" %>
           <% else %>
-            <%= link_to "フォローする" , customer_relationships_path(@customer) , method: :post, class: "btn btn-info" %>
+            <%= link_to "フォローする" , customer_relationships_path(@customer) , method: :post, class: "btn btn-sm btn-info btn-size" %>
           <% end %>
         <% else %>
-          <%= link_to "編集" , edit_customer_path(@customer), class: "btn btn-success" %>
-          <%= link_to "お気に入り" , note_favorite_path(@customer), class: "btn btn-warning" %>
+          <%= link_to "編集" , edit_customer_path(@customer), class: "btn btn-sm btn-success btn-size" %>
+          <%= link_to "お気に入り" , note_favorite_path(@customer), class: "btn btn-sm btn-warning btn-size" %>
         <% end %>
       <% end %>
     </div>
   </div>
   <!--プロフィールがあるか無いかで条件分岐-->
   <% if @customer.introduction != nil %>
-    <div class="row">
-      <div class="col-5">
+    <div class="row mt-3">
+      <div class="col-md-5 col-sm-12">
         <h3>プロフィール</h3>
         <%= safe_join(@customer.introduction.split("\n"), tag(:br)) %>
       </div>

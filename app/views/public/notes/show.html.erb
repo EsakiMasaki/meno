@@ -1,19 +1,19 @@
 <div class="container bg-white rounded-lg">
   <div class="row mt-5">
-    <div class="col-8 my-3">
-      <span>作成日: <%= @note.created_at.strftime("%Y/%m/%d") %></span>
-      <span class="ml-3">最終更新日: <%= @note.updated_at.strftime("%Y/%m/%d") %></span>
+    <div class="col-sm-12 col-md-8 my-3">
+      <span class="block">作成日: <%= @note.created_at.strftime("%Y/%m/%d") %></span>
+      <span class="ml-md-3">最終更新日: <%= @note.updated_at.strftime("%Y/%m/%d") %></span>
       <!--ログインしていれば-->
       <% if customer_signed_in? %>
-        <span class="favorite-<%= @note.id %> ml-5">
+        <span class="favorite-<%= @note.id %> ml-1 ml-md-5 block">
           <%= render "public/favorites/like", note: @note %>
         </span>
       <% end %>
     </div>
-    <div class="col-4 my-3">
+    <div class="col-sm-12 col-md-4 my-3">
       <!--現在のユーザーとページのユーザーが同じなら-->
       <% if current_customer == @note.customer %>
-        <div class="text-right">
+        <div class="text-md-right">
           公開ステータス:
           <!--ノートの公開ステータスが公開であれば-->
           <% if @note.publish_status == "publish" %>
@@ -53,7 +53,7 @@
         <h4 class="h-double" id="procedure-<%= num %>"><%= "#{num}. #{procedure.procedure}" %></h4>
         <!--手順説明画像があるなら-->
         <% if procedure.procedure_image.attached? %>
-          <p class="text-center text"><%= image_tag procedure.get_procedure_image(700,500) %></p>
+          <p class="text-center text"><%= image_tag procedure.get_procedure_image(1000,1000) , class: "img-fluid img-thumbnail" %></p>
         <% end %>
         <p class="mb-3 text"><%= safe_join(procedure.explanation.split("\n"),tag(:br)) %></p>
       <% end %>
