@@ -27,6 +27,11 @@ Rails.application.routes.draw do
 
     resources :categories, only: [:show,:create,:edit,:destroy,:update]
 
+    # ゲストログイン
+    devise_scope :customer do
+      post "customers/guest_sign_in" => "sessions#guest_sign_in"
+    end
+
   end
 
 

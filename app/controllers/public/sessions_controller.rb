@@ -36,4 +36,12 @@ class Public::SessionsController < Devise::SessionsController
       end
     end
   end
+
+  # ゲストログイン
+  def guest_sign_in
+    customer = Customer.guest
+    sign_in customer
+    flash[:notice] = "ゲストログインしました"
+    redirect_to root_path
+  end
 end

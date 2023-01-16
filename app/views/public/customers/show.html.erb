@@ -17,7 +17,10 @@
             <%= link_to "フォローする" , customer_relationships_path(@customer) , method: :post, class: "btn btn-sm btn-info btn-size" %>
           <% end %>
         <% else %>
-          <%= link_to "編集" , edit_customer_path(@customer), class: "btn btn-sm btn-success btn-size" %>
+          <!--ゲストユーザーでなければ表示-->
+          <% if @customer.name != "ゲスト" %>
+            <%= link_to "編集" , edit_customer_path(@customer), class: "btn btn-sm btn-success btn-size" %>
+          <% end %>
           <%= link_to "お気に入り" , note_favorite_path(@customer), class: "btn btn-sm btn-warning btn-size" %>
         <% end %>
       <% end %>

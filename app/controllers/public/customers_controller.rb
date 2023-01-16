@@ -2,6 +2,7 @@ class Public::CustomersController < ApplicationController
   before_action :authenticate_customer!, except: [:top,:about,:show,:search]
   # url直接入力対策
   before_action :current_customer_match?, only: [:edit,:update]
+  before_action :ensure_guest_user, only: [:edit,:update]
 
   def index
     @customers = Customer.page(params[:page])
@@ -39,6 +40,15 @@ class Public::CustomersController < ApplicationController
     customer = Customer.find(params[:id])
     unless current_customer == customer
       redirect_to root_path
+    end
+  end
+
+  # ゲストの時、url直接入力対策
+  def ensure_guest_user
+    @customer = Customer.find(params[:id])
+    if @customer.name == "ゲスト"
+      flash[:notice] = "ゲストユーザーはプロフィール編集画面へ遷移できません"
+      redirect_to customer_path(current_customer)
     end
   end
 end
