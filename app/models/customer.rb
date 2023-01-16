@@ -13,7 +13,7 @@ class Customer < ApplicationRecord
   has_many :followers , through: :reverse_of_relationships , source: :follower
 
   # バリデーション
-  validates :name, presence: true
+  validates :name, presence: true, length: {maximum: 15}
 
   # 顧客検索(部分一致)
   def self.looks(word)
