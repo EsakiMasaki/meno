@@ -9,12 +9,20 @@ class Public::CustomersController < ApplicationController
   end
 
   def show
-    @notes = Note.all
     @customer = Customer.find(params[:id])
     #コントローラー側で一度読み込んでおく
     @customer.get_profile_image(50,50)
     @category = @customer.categories.new
     @categories = @customer.categories.all.order(:name)
+    #カテゴリーidがnilのノートを見つける
+    notes = @customer.notes.all.order(:title)
+    note_category_nil = []
+    notes.each do |note|
+     if (note.category_id == nil) || (note.category == nil)
+       note_category_nil.push(note)
+     end
+    end
+    @notes = note_category_nil
   end
 
   def edit
