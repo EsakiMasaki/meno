@@ -21,7 +21,7 @@
       </div>
     </div>
   <% end %>
-  <h3 class="mt-5 h3-font-size">カテゴリー</h3>
+  <h3 class="mt-5 mb-4 h3-font-size">カテゴリー</h3>
   <% @categories.each do |category| %>
     <div class="row">
       <div class="col-12">
@@ -42,12 +42,18 @@
   <% end %>
   <div class="row">
     <div class="col-12">
-      <% @notes.order(:title).each do |note| %>
-        <!--ノートの公開ステータスが公開、かつカテゴリーに紐付いてなく、ノートを作成した人のページなら-->
-        <% if (note.publish_status == "publish") && (note.category == nil) && (note.customer == @customer) %>
-          <p class="mt-3 stick-out"><i class="fa-regular fa-file"></i> <%= link_to note.title , admin_note_path(note),class: "text-dark" %></p>
+      <details>
+        <summary class="mb-3 stick-out">
+          <i class="fa-regular fa-folder"></i> その他
+        </summary>
+
+        <% @notes.order(:title).each do |note| %>
+          <!--ノートの公開ステータスが公開、かつカテゴリーに紐付いてなく、ノートを作成した人のページなら-->
+          <% if (note.publish_status == "publish") && (note.category == nil) && (note.customer == @customer) %>
+            <p class="pl-3 mt-3 stick-out"><i class="fa-regular fa-file"></i> <%= link_to note.title , admin_note_path(note),class: "text-dark" %></p>
+          <% end %>
         <% end %>
-      <% end %>
+      </details>
     </div>
   </div>
 
