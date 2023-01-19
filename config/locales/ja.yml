@@ -14,6 +14,10 @@ ja:
 
 
   # エラーメッセージ日本語化
+  errors:
+    messages:
+      not_saved: "以下の項目を修正してください"
+
   activerecord:
     attributes:
       note:
@@ -30,6 +34,9 @@ ja:
 
       customer:
         name: "ユーザー名"
+        email: "メールアドレス"
+        password: "パスワード"
+        password_confirmation: "確認用パスワード"
 
   # ページネーション日本語化
   views:
