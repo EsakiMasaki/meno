@@ -32,7 +32,7 @@ class Customer < ApplicationRecord
       file_path = Rails.root.join("app/assets/images/default-image.jpg")
       profile_image.attach(io: File.open(file_path),filename: "default-image.jpg")
     end
-    profile_image.variant(resize_to_limit: [width,height])
+    profile_image.variant(resize_to_limit: [width,height]).processed
   end
 
   # ゲストログイン

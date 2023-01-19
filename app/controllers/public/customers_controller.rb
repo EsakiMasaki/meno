@@ -11,6 +11,8 @@ class Public::CustomersController < ApplicationController
   def show
     @notes = Note.all
     @customer = Customer.find(params[:id])
+    #コントローラー側で一度読み込んでおく
+    @customer.get_profile_image(50,50)
     @category = @customer.categories.new
     @categories = @customer.categories.all.order(:name)
   end
