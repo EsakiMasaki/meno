@@ -1,7 +1,6 @@
 class Customer < ApplicationRecord
   # アソシエーション
   has_many :notes ,dependent: :destroy
-  has_many :note_procedures ,dependent: :destroy
   has_many :note_comments ,dependent: :destroy
   has_many :categories ,dependent: :destroy
   has_many :favorites , dependent: :destroy
