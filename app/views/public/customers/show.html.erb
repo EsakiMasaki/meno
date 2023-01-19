@@ -18,7 +18,7 @@
           <% end %>
         <% else %>
           <!--ゲストユーザーでなければ表示-->
-          <% if @customer.name != "ゲスト" %>
+          <% if @customer.email != "guest@gmail.com" %>
             <%= link_to "編集" , edit_customer_path(@customer), class: "btn btn-sm btn-success btn-size" %>
           <% end %>
           <%= link_to "お気に入り" , note_favorite_path(@customer), class: "btn btn-sm btn-warning btn-size" %>
