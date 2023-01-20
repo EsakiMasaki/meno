@@ -35,7 +35,7 @@
             <td class="stick-out" data-label="タイトル"><%= link_to note.title , note_path(note) , class: "text-dark" %></td>
             <td class="stick-out" data-label="カテゴリー">
               <!--カテゴリーがあれば-->
-              <% if note.category_id != nil %>
+              <% if note.category != nil %>
                 <%= link_to note.category.name, category_path(note.category), class: "text-dark" %>
               <% end %>
             </td>
