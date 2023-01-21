@@ -26,7 +26,7 @@ webのような機能ですが、以下のような問題点を改善したい�
 
 ## 設計書
 ER図:  
-https://app.diagrams.net/#G1BNdrlD5w1TaOxI3leCuZVciSmNt9xBJx
+https://github.com/EsakiMasaki/meno/issues/1#issue-1551689434
   
 テーブル定義書:  
 https://docs.google.com/spreadsheets/d/14i_d8ExCfRTGcqj7fCVE8O5NvHKXBjJYtU9e8NbgnrY/edit#gid=1373217982
