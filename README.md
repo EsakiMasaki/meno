@@ -25,10 +25,10 @@ webのような機能ですが、以下のような問題点を改善したい�
 ・手順を記録しておきたい時
 
 ## 設計書
-ER図:
+ER図:  
 https://app.diagrams.net/#G1BNdrlD5w1TaOxI3leCuZVciSmNt9xBJx
   
-テーブル定義書: 
+テーブル定義書:  
 https://docs.google.com/spreadsheets/d/14i_d8ExCfRTGcqj7fCVE8O5NvHKXBjJYtU9e8NbgnrY/edit#gid=1373217982
 
 ## 開発環境
@@ -39,5 +39,5 @@ https://docs.google.com/spreadsheets/d/14i_d8ExCfRTGcqj7fCVE8O5NvHKXBjJYtU9e8Nbg
 - IDE：Cloud9
 
 ## 使用素材
-- 外部サービスの画像素材・音声素材を使用した場合は、必ずサービス名とURLを明記してください。
-- 使用しない場合は、使用素材の項目をREADMEから削除してください。
+外部サービスの画像素材: 「イラストAC」  
+https://www.ac-illust.com/
